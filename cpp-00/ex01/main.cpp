@@ -3,18 +3,14 @@
 #include "PhoneBook.hpp"
 
 
-void	phonebook_options(void)
+void	phonebook_start(void)
 {
 	std::cout << "********************************************************" << std::endl;
-	std::cout << "* 													 *" << std::endl;
-	std::cout << "*********** Welcome To The 80's E-phonebook ************" << std::endl;
-	std::cout << "*                                                      *" << std::endl;
+	std::cout << "********************************************************" << std::endl;
+	std::cout << "*********** Welcome To The 80's E-Phonebook ************" << std::endl;
 	std::cout << "********************************************************" << std::endl;
 	std::cout << "********************************************************" << std::endl;
-	std::cout << "********************************************************" << std::endl;
-	std::cout << "********************************************************" << std::endl;
-	std::cout << "********************************************************" << std::endl;
-
+	std::cout << "\n\n";
 }
 
 int	main(void)
@@ -26,10 +22,14 @@ int	main(void)
 
 	status  = 0;
 	myphonebook.reset_idx();
+	phonebook_start();
 	do
 	{
-		phonebook_options();
-		std::cout << "enter the option : ";
+		std::cout << "menu : " << std::endl;
+		std::cout << "add contact =>   1 " << std::endl;
+		std::cout << "search For Contact " << std::endl;
+		std::cout << "menu : " << std::endl;
+		std::cout << "choose the option : ";
 		std::cin >> option;
 		if (option == "ADD")
 			myphonebook.add_contact();
@@ -43,5 +43,6 @@ int	main(void)
 			status = 1;
 	} while (status != 1);
 
+	myphonebook.get_all_arr();
 	return (0);
 }
