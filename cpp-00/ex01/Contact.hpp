@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits>
+#include <cstdlib>
 
 # ifndef CONTACT_HPP
 # define CONTACT_HPP
@@ -17,7 +18,7 @@ class	Contact
 	public:
 
 		void	assign_data(void);
-		void	desplay_contact_infos(int idx);
+		void	desplay_contact_infos(int idx, Contact *contacts);
 		std::string	get_name(void);
 		void	proper_desplay(std::string field, bool flag);
 };
@@ -32,6 +33,11 @@ void	Contact::assign_data(void)
 			{
 				std::cout << "Enter First Name : ";
 				getline(std::cin ,first_name);
+				if (std::cin.eof())
+				{
+					std::cout << "\nEOF\n";
+					exit (0);
+				}
 				if (!first_name.empty())
 					break ;
 				else
@@ -42,6 +48,11 @@ void	Contact::assign_data(void)
 			{
 				std::cout << "Enter Last Name : ";
 				getline(std::cin, last_name);
+				if (std::cin.eof())
+				{
+					std::cout << "\nEOF\n";
+					exit (0);
+				}
 				if (!last_name.empty())
 					break ;
 				else
@@ -52,6 +63,11 @@ void	Contact::assign_data(void)
 			{
 				std::cout << "Enter The NickName : ";
 				getline(std::cin, nickname);
+				if (std::cin.eof())
+				{
+					std::cout << "\nEOF\n";
+					exit (0);
+				}
 				if (!nickname.empty())
 					break ;
 				else
@@ -62,6 +78,11 @@ void	Contact::assign_data(void)
 			{
 				std::cout << "Enter Darkest Secret : ";
 				getline(std::cin, darkest_secret);
+				if (std::cin.eof())
+				{
+					std::cout << "\nEOF\n";
+					exit (0);
+				}
 				if (!darkest_secret.empty())
 					break ;
 				else
@@ -75,6 +96,7 @@ void	Contact::proper_desplay(std::string field, bool flag)
 	int	i;
 
 	i = 0;
+	std::cout << "	";
 	while (field[i])
 	{
 		if (i > 8)
@@ -82,20 +104,21 @@ void	Contact::proper_desplay(std::string field, bool flag)
 			std::cout << ".";
 			break ;
 		}
+		else
+			std::cout << field[i];
+		i++;
 	}
-	std::cout << "	";
 	if (flag == true)
 		std::cout << "|";
 }
 
-void	Contact::desplay_contact_infos(int idx)
+void	Contact::desplay_contact_infos(int idx, Contact *contacts)
 {
-			std::cout << idx  << "	|";
-			proper_desplay(first_name, true);
-			proper_desplay(last_name, true);
-			proper_desplay(nickname, false);
-			//std::cout << "|"<< last_name;
-			//std::cout << "|"<< nickname << std::endl;
+			std::cout<<"	"<< idx << "|";
+			proper_desplay(contacts[idx].first_name, true);
+			proper_desplay(contacts[idx].last_name, true);
+			proper_desplay(contacts[idx].nickname, false);
+			std::cout << "\n";
 }
 
 std::string	Contact::get_name(void)
