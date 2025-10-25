@@ -30,6 +30,7 @@ class	PhoneBook
 					return ;
 				}
 			}
+			std::cout << "Unexist UserName\n";
 		}
 		void	reset_idx()
 		{

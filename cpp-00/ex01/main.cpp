@@ -1,4 +1,5 @@
 #include <iostream>
+# include <limits>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
@@ -26,7 +27,6 @@ int	main(void)
 	do
 	{
 		std::cout << "menu : " << std::endl;
-		std::cout << "add contact =>   1 " << std::endl;
 		std::cout << "search For Contact " << std::endl;
 		std::cout << "menu : " << std::endl;
 		std::cout << "choose the option : ";
@@ -35,8 +35,14 @@ int	main(void)
 			myphonebook.add_contact();
 		if (option == "SEARCH")
 		{
-			std::cout<< "enter the first name : ";
-			std::cin >> fname;	
+			std::cin.ignore();
+			while (true)
+			{
+				std::cout << "Enter The UserName : ";
+				getline(std::cin, fname);
+				if (!fname.empty())
+					break ;
+			}
 			myphonebook.search_for_contact(fname);
 		}
 		if (option == "EXIT")
