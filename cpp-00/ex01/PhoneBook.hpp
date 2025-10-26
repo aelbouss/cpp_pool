@@ -6,6 +6,15 @@
 # ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
+
+// macros 
+
+# define RED "\033[1;31m"
+# define RESET "\033[0m"
+# define GREEN "\033[32m"
+
+
+// classes
 class	PhoneBook
 {
 	private:
@@ -15,7 +24,7 @@ class	PhoneBook
 
 		void	add_contact(void)
 		{
-				if (idx >= 7)
+				if (idx >= 8)
 					idx = 0;
 				contacts[idx].assign_data();
 				idx++;
@@ -35,14 +44,20 @@ class	PhoneBook
 			std::cout << "Unexist UserName\n";
 		}
 
-		void	reset_idx()
+		void	idx_init()
 		{
 			idx = 0;
 		}
+
 		void	get_all_arr()
 		{
 			for(int i = 0 ; i < 8 ; i++)
 				contacts[i].desplay_contact_infos(i, contacts);
+		}
+		
+		int	get_idx_value(void)
+		{
+			return (idx);
 		}
 };
 

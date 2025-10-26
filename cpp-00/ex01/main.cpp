@@ -1,16 +1,18 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
-
-void	phonebook_start(void)
+void	phonebook_options(void)
 {
-	std::cout << "********************************************************" << std::endl;
-	std::cout << "********************************************************" << std::endl;
-	std::cout << "*********** Welcome To The 80's E-Phonebook ************" << std::endl;
-	std::cout << "********************************************************" << std::endl;
-	std::cout << "********************************************************" << std::endl;
-	std::cout << "\n\n";
+		std::cout << "\n";
+		std::cout << RED << "*************************************************" << std::endl;
+		std::cout << "*                Operations                     *" << std::endl;
+		std::cout << "*                                               *" << std::endl;
+		std::cout << "*    ==>    add a contact => ADD                *" << std::endl;
+		std::cout << "*    ==>    search about a contact => SEARCH    *" << std::endl;
+		std::cout << "*    ==>    exit the program => EXIT            *" << std::endl;
+		std::cout << "*************************************************" << RESET << std::endl;
 }
+
 
 int	main(void)
 {
@@ -20,37 +22,43 @@ int	main(void)
 	int	status;
 
 	status  = 0;
-	myphonebook.reset_idx();
-	phonebook_start();
+	myphonebook.idx_init();
 	do
 	{
-		std::cout << "menu : " << std::endl;
-		std::cout << "choose the option : ";
-		//std::cin >> std::ws;
+		phonebook_options();
+		std::cout << "\n\nChoose an option : ";
+		std::cin >> std::ws;
 		if (std::cin.eof())
 		{
-				std::cout << "EOF\n";
+				std::cout << "\nEOF\n";
 				exit (0);
 		}
 		std::cin >> option;
 		if (option == "ADD")
 			myphonebook.add_contact();
-		if (option == "SEARCH")
+		else if (option == "SEARCH")
 		{
 			std::cin.ignore();
 			while (true)
 			{
 				std::cout << "Enter The UserName : ";
 				getline(std::cin, fname);
+				if (std::cin.eof())
+				{
+					std::cout << "\nEOF\n";
+					exit(0);
+				}
+			
 				if (!fname.empty())
 					break ;
 			}
 			myphonebook.search_for_contact(fname);
 		}
-		if (option == "EXIT")
+		else if (option == "EXIT")
 			status = 1;
-	} while (status != 1);
+		else
+			std::cout <<  GREEN << "\n Invalid Option ! Try Again "<< RESET << std::endl;
+	}while (status != 1);
 
-	myphonebook.get_all_arr();
 	return (0);
 }

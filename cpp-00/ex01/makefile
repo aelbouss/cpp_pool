@@ -19,5 +19,6 @@ fclean: clean
 re: fclean
 	$(MAKE) all
 
+.SECONDARY : $(OBJ)
 
 

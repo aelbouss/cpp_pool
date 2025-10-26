@@ -5,6 +5,12 @@
 # ifndef CONTACT_HPP
 # define CONTACT_HPP
 
+// macros 
+
+# define RED "\033[1;31m"
+# define RESET "\033[0m"
+# define GREEN "\033[32m"
+
 // class section
 
 class	Contact
@@ -21,11 +27,11 @@ class	Contact
 		void	desplay_contact_infos(int idx, Contact *contacts);
 		std::string	get_name(void);
 		void	proper_desplay(std::string field, bool flag);
+		void	just_print();
 };
 
 
-//  methods sections :
-
+//  methods sections
 void	Contact::assign_data(void)
 		{
 			std::cin.ignore();
@@ -114,6 +120,7 @@ void	Contact::proper_desplay(std::string field, bool flag)
 
 void	Contact::desplay_contact_infos(int idx, Contact *contacts)
 {
+			std::cout << "\n";
 			std::cout<<"	"<< idx << "|";
 			proper_desplay(contacts[idx].first_name, true);
 			proper_desplay(contacts[idx].last_name, true);
