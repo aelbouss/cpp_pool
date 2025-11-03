@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits>
+#include <iomanip>
 #include <cstdlib>
 
 # ifndef CONTACT_HPP
@@ -13,6 +14,8 @@
 
 // class section
 
+void	eof_handling(void);
+
 class	Contact
 {
 	private:
@@ -23,115 +26,176 @@ class	Contact
 		std::string	darkest_secret;
 	public:
 
+	   // setters
+		void	take_first_name(void);
+		void	take_last_name(void);
+		void	take_nick_name(void);
+		void	take_phone_number(void);
+		void	take_darkest_secret(void);
 		void	assign_data(void);
-		void	desplay_contact_infos(int idx, Contact *contacts);
-		std::string	get_name(void);
-		void	proper_desplay(std::string field, bool flag);
-		void	just_print();
+		// getters
+		std::string	get_first_name(void);
+		std::string	get_last_name(void);
+		std::string	get_nickname(void);
+		std::string	get_phone_number(void);
+		std::string	get_darkest_secret(void);
+		// utilities 
+		void	get_contact_infos(void);
+		void	desplay_phonebook_contacts(void);
 };
 
 
-//  methods sections
-void	Contact::assign_data(void)
-		{
-			std::cin.ignore();
-			while (true)
-			{
-				std::cout << "Enter First Name : ";
-				getline(std::cin ,first_name);
-				if (std::cin.eof())
-				{
-					std::cout << "\nEOF\n";
-					exit (0);
-				}
-				if (!first_name.empty())
-					break ;
-				else
-					std::cout << "The First Name Cannot Be Empty" << std::endl;
-			}
-			std::cin.ignore();
-			while (true)
-			{
-				std::cout << "Enter Last Name : ";
-				getline(std::cin, last_name);
-				if (std::cin.eof())
-				{
-					std::cout << "\nEOF\n";
-					exit (0);
-				}
-				if (!last_name.empty())
-					break ;
-				else
-					std::cout << "The Last Name Cannot Be Empty" << std::endl;
-			}
-			std::cin.ignore();
-			while (true)
-			{
-				std::cout << "Enter The NickName : ";
-				getline(std::cin, nickname);
-				if (std::cin.eof())
-				{
-					std::cout << "\nEOF\n";
-					exit (0);
-				}
-				if (!nickname.empty())
-					break ;
-				else
-					std::cout << "The NickName Cannot Be Empty" << std::endl;
-			}
-			std::cin.ignore();
-			while (true)
-			{
-				std::cout << "Enter Darkest Secret : ";
-				getline(std::cin, darkest_secret);
-				if (std::cin.eof())
-				{
-					std::cout << "\nEOF\n";
-					exit (0);
-				}
-				if (!darkest_secret.empty())
-					break ;
-				else
-					std::cout << "The Darkest Secret Cannot Be Empty" << std::endl;
-			}
-		}
+/* =>  setters section  <= */
 
 
-void	Contact::proper_desplay(std::string field, bool flag)
+void	Contact::take_first_name(void)
 {
-	int	i;
-
-	i = 0;
-	std::cout << "	";
-	while (field[i])
+	do
 	{
-		if (i > 8)
-		{
-			std::cout << ".";
+		std::cout << "enter the first name : ";
+		getline(std::cin, first_name);
+		eof_handling();
+		if (first_name.empty())
+			std::cout << "the filed cannot be empty tray again" << std::endl;
+		if (!first_name.empty())
 			break ;
-		}
-		else
-			std::cout << field[i];
-		i++;
-	}
-	if (flag == true)
-		std::cout << "|";
+	}while(1);
 }
 
-void	Contact::desplay_contact_infos(int idx, Contact *contacts)
+void	Contact::take_last_name(void)
 {
-			std::cout << "\n";
-			std::cout<<"	"<< idx << "|";
-			proper_desplay(contacts[idx].first_name, true);
-			proper_desplay(contacts[idx].last_name, true);
-			proper_desplay(contacts[idx].nickname, false);
-			std::cout << "\n";
+	do
+	{
+		std::cout << "enter the last name : ";
+		getline(std::cin, last_name);
+		eof_handling();
+		if (last_name.empty())
+			std::cout << "the filed cannot be empty tray again" << std::endl;
+		if (!last_name.empty())
+			break ;
+	}while(1);
 }
 
-std::string	Contact::get_name(void)
+void	Contact::take_nick_name(void)
 {
-			return (first_name);
+	do
+	{
+		std::cout << "enter the nick name : ";
+		getline(std::cin, nickname);
+		eof_handling();
+		if (nickname.empty())
+			std::cout << "the filed cannot be empty tray again" << std::endl;
+		if (!nickname.empty())
+			break ;
+	}while(1);	
 }
+
+void	Contact::take_phone_number(void)
+{
+	do
+	{
+		std::cout << "enter the phone number : ";
+		getline(std::cin, phone_number);
+		eof_handling();
+		if (phone_number.empty())
+			std::cout << "the filed cannot be empty tray again" << std::endl;
+		if (!phone_number.empty())
+			break ;
+	}while(1);		
+}
+
+void	Contact::take_darkest_secret(void)
+{
+	do
+	{
+		std::cout << "enter the darkest secret : ";
+		getline(std::cin, darkest_secret);
+		eof_handling();
+		if (darkest_secret.empty())
+			std::cout << "the filed cannot be empty tray again" << std::endl;
+		if (!darkest_secret.empty())
+			break ;
+	}while(1);	
+}
+
+void	Contact::assign_data(void)
+{
+	take_first_name();
+	take_last_name();
+	take_phone_number();
+	take_nick_name();
+	take_darkest_secret();
+}
+
+/* =>  geters  <= */
+
+std::string	Contact::get_first_name(void)
+{
+	return (first_name);
+}
+
+std::string	Contact::get_last_name(void)
+{
+	return (last_name);
+}
+
+std::string	Contact::get_nickname(void)
+{
+	return (nickname);
+}
+
+std::string	Contact::get_phone_number(void)
+{
+	return (phone_number);
+}
+
+std::string	Contact::get_darkest_secret(void)
+{
+	return (darkest_secret);
+}
+
+void	Contact::get_contact_infos(void)
+{
+	std::cout << "the first name : " << get_first_name() << std::endl;
+	std::cout << "the last name : " << get_last_name() << std::endl;
+	std::cout << "the nickname : " << get_nickname() << std::endl;
+	std::cout << "the phone number : " << get_phone_number() << std::endl;
+	std::cout << "the darest secret : " << get_darkest_secret() << std::endl;
+}
+
+/*
+
+Idx  First Name     Last Name      Nickname       
+-----------------------------------------------
+1    Alice          Johnson        Ally           
+2    Bob            Smith          Bobby          
+3    Charlie        Brown          Chuck          
+4    Diana          Prince         Wonder       
+
+*/
+
+/*
+ cout << left 
+         << setw(wIdx)  << "Idx"
+         << setw(wFirst) << "First Name"
+         << setw(wLast)  << "Last Name"
+         << setw(wNick)  << "Nickname" 
+         << endl;
+
+*/
+
+
+/*
+void	Contact::desplay_phonebook_contacts(void)
+{
+	std::cout << std::right 
+		<< std::setw(5) << "index"
+		<< std::setw(15) << "First Name"
+		<< std::setw(15) << "Last Name"
+		<< std::setw(15) << "Nickname" << std::endl;
+	
+}
+*/
 
 
 #endif

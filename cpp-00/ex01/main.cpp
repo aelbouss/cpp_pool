@@ -13,13 +13,13 @@ void	phonebook_options(void)
 		std::cout << "*************************************************" << RESET << std::endl;
 }
 
-
+/*
 int	main(void)
 {
 
 	PhoneBook	myphonebook;
-	std::string	option, fname;
-	int	status;
+	std::string	option ;
+	int	status, index;
 
 	status  = 0;
 	myphonebook.idx_init();
@@ -38,19 +38,19 @@ int	main(void)
 			myphonebook.add_contact();
 		else if (option == "SEARCH")
 		{
-			std::cin.ignore();
+			myphonebook.get_all_arr();
+			
 			while (true)
 			{
-				std::cout << "Enter The UserName : ";
-				getline(std::cin, fname);
+				std::cout << "Enter The Index Of The User You Want : ";
+				//getline(std::cin, fname);
+				std::cin >> index;
 				if (std::cin.eof())
 				{
 					std::cout << "\nEOF\n";
 					exit(0);
 				}
-			
-				if (!fname.empty())
-					break ;
+				
 			}
 			myphonebook.search_for_contact(fname);
 		}
@@ -60,5 +60,50 @@ int	main(void)
 			std::cout <<  GREEN << "\n Invalid Option ! Try Again "<< RESET << std::endl;
 	}while (status != 1);
 
+	return (0);
+}
+
+
+*/
+
+void	eof_handling(void)
+{
+	if (std::cin.eof())
+	{
+			std::cout << "\nEOF\n";
+			exit (0);
+	}
+}
+
+
+int	main(void)
+{
+	PhoneBook	myphonebook;
+	std::string	option;
+
+	do
+	{
+		phonebook_options();
+		std::cout << "choose an option : ";
+		getline(std::cin, option);
+		eof_handling();
+		if (option == "ADD")
+			myphonebook.add_contact();
+		else if(option == "SEARCH")
+		{
+			std::cout << "search\n";
+		}
+		else if (option == "EXIT")
+		{
+			std::cout << "exit\n";
+		}
+		else
+		{
+			if (option.empty())
+				std::cout << "\nthe  filed  cannot  be  empty\n" << std::endl;
+			if (!option.empty() && option != "ADD" && option != "SEARCH" &&  option != "EXIT")
+				std::cout << "\nunavailable option tray agian\n" << std::endl;
+		}
+	} while (1);
 	return (0);
 }
