@@ -92,7 +92,6 @@ int	main(void)
 			myphonebook.add_contact();
 		else if(option == "SEARCH")
 		{
-			//std::cout << "search\n";
 			myphonebook.search_for_contact();
 		}
 		else if (option == "EXIT")

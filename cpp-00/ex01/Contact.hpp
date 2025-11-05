@@ -1,6 +1,7 @@
 #include <iostream>
 #include <limits>
 #include <iomanip>
+#include <ctype.h>
 #include <cstdlib>
 
 # ifndef CONTACT_HPP
@@ -15,6 +16,7 @@
 // class section
 
 void	eof_handling(void);
+void	put_str_8_chars(std::string s);
 
 class	Contact
 {
@@ -163,6 +165,20 @@ void	Contact::get_contact_infos(void)
 	std::cout << "the darest secret : " << get_darkest_secret() << std::endl;
 }
 
+void	put_str_8_chars(std::string s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && i < 9)
+	{
+		std::cout << s[i];
+		i++;
+	}
+	if (s[i])
+		std::cout << '.';
+}
+
 /*
 
 Idx  First Name     Last Name      Nickname       
@@ -189,9 +205,9 @@ Idx  First Name     Last Name      Nickname
 void	Contact::desplay_phonebook_contacts(void)
 {
 	std::cout << std::right
-	<< std::setw(15)  << get_first_name() << " |"
-	<< std::setw(15) << get_last_name() << " |"
-	<< std::setw(15) << get_nickname() << " |" << std::endl;
+	<< std::setw(15); put_str_8_chars(get_first_name()) ; std::cout << " |"
+	<< std::setw(15); put_str_8_chars(get_last_name()) ; std::cout << " |"
+	<< std::setw(15); put_str_8_chars(get_nickname()) ; std::cout << " |" << std::endl;
 }
 
 
