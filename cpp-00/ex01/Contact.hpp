@@ -185,17 +185,14 @@ Idx  First Name     Last Name      Nickname
 */
 
 
-/*
+
 void	Contact::desplay_phonebook_contacts(void)
 {
-	std::cout << std::right 
-		<< std::setw(5) << "index"
-		<< std::setw(15) << "First Name"
-		<< std::setw(15) << "Last Name"
-		<< std::setw(15) << "Nickname" << std::endl;
-	
+	std::cout << std::right
+	<< std::setw(15)  << get_first_name() << " |"
+	<< std::setw(15) << get_last_name() << " |"
+	<< std::setw(15) << get_nickname() << " |" << std::endl;
 }
-*/
 
 
 #endif

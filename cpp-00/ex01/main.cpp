@@ -81,6 +81,7 @@ int	main(void)
 	PhoneBook	myphonebook;
 	std::string	option;
 
+	myphonebook.set_idx();
 	do
 	{
 		phonebook_options();
@@ -91,7 +92,8 @@ int	main(void)
 			myphonebook.add_contact();
 		else if(option == "SEARCH")
 		{
-			std::cout << "search\n";
+			//std::cout << "search\n";
+			myphonebook.search_for_contact();
 		}
 		else if (option == "EXIT")
 		{
