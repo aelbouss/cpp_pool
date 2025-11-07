@@ -58,7 +58,7 @@ void	Contact::take_first_name(void)
 		getline(std::cin, first_name);
 		eof_handling();
 		if (first_name.empty())
-			std::cout << "the filed cannot be empty tray again" << std::endl;
+			std::cout << "the filed cannot be empty try again" << std::endl;
 		if (!first_name.empty())
 			break ;
 	}while(1);
@@ -72,7 +72,7 @@ void	Contact::take_last_name(void)
 		getline(std::cin, last_name);
 		eof_handling();
 		if (last_name.empty())
-			std::cout << "the filed cannot be empty tray again" << std::endl;
+			std::cout << "the filed cannot be empty try again" << std::endl;
 		if (!last_name.empty())
 			break ;
 	}while(1);
@@ -86,7 +86,7 @@ void	Contact::take_nick_name(void)
 		getline(std::cin, nickname);
 		eof_handling();
 		if (nickname.empty())
-			std::cout << "the filed cannot be empty tray again" << std::endl;
+			std::cout << "the filed cannot be empty try again" << std::endl;
 		if (!nickname.empty())
 			break ;
 	}while(1);	
@@ -100,7 +100,7 @@ void	Contact::take_phone_number(void)
 		getline(std::cin, phone_number);
 		eof_handling();
 		if (phone_number.empty())
-			std::cout << "the filed cannot be empty tray again" << std::endl;
+			std::cout << "the filed cannot be empty try again" << std::endl;
 		if (!phone_number.empty())
 			break ;
 	}while(1);		
@@ -114,7 +114,7 @@ void	Contact::take_darkest_secret(void)
 		getline(std::cin, darkest_secret);
 		eof_handling();
 		if (darkest_secret.empty())
-			std::cout << "the filed cannot be empty tray again" << std::endl;
+			std::cout << "the filed cannot be empty try again" << std::endl;
 		if (!darkest_secret.empty())
 			break ;
 	}while(1);	
@@ -178,28 +178,6 @@ void	put_str_8_chars(std::string s)
 	if (s[i])
 		std::cout << '.';
 }
-
-/*
-
-Idx  First Name     Last Name      Nickname       
------------------------------------------------
-1    Alice          Johnson        Ally           
-2    Bob            Smith          Bobby          
-3    Charlie        Brown          Chuck          
-4    Diana          Prince         Wonder       
-
-*/
-
-/*
- cout << left 
-         << setw(wIdx)  << "Idx"
-         << setw(wFirst) << "First Name"
-         << setw(wLast)  << "Last Name"
-         << setw(wNick)  << "Nickname" 
-         << endl;
-
-*/
-
 
 
 void	Contact::desplay_phonebook_contacts(void)
