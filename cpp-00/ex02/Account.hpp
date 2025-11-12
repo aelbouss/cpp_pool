@@ -12,6 +12,12 @@
 #ifndef __ACCOUNT_H__
 #define __ACCOUNT_H__
 
+// hedeaders
+
+# include <iostream>
+# include <ctime>
+# include <iomanip>
+
 // ************************************************************************** //
 //                               Account Class                                //
 // ************************************************************************** //
@@ -29,11 +35,11 @@ public:
 	static int	getNbWithdrawals( void );
 	static void	displayAccountsInfos( void );
 
-	Account( int initial_deposit );
+	Account( const int initial_deposit );
 	~Account( void );
 
-	void	makeDeposit( int deposit );
-	bool	makeWithdrawal( int withdrawal );
+	void	makeDeposit( const int deposit );
+	bool	makeWithdrawal( const int withdrawal );
 	int		checkAmount( void ) const;
 	void	displayStatus( void ) const;
 
