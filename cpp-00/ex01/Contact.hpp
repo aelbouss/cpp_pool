@@ -158,11 +158,11 @@ std::string	Contact::get_darkest_secret(void)
 
 void	Contact::get_contact_infos(void)
 {
-	std::cout << "the first name : " << get_first_name() << std::endl;
+	std::cout << GREEN << "the first name : " << get_first_name() << std::endl;
 	std::cout << "the last name : " << get_last_name() << std::endl;
 	std::cout << "the nickname : " << get_nickname() << std::endl;
 	std::cout << "the phone number : " << get_phone_number() << std::endl;
-	std::cout << "the darest secret : " << get_darkest_secret() << std::endl;
+	std::cout << "the darest secret : " << get_darkest_secret() << RESET << std::endl;
 }
 
 void	put_str_8_chars(std::string s)
@@ -170,7 +170,8 @@ void	put_str_8_chars(std::string s)
 	int	i;
 
 	i = 0;
-	while (s[i] && i < 9)
+	std::cout << ' ';
+	while (s[i] && i < 8)
 	{
 		std::cout << s[i];
 		i++;
@@ -183,10 +184,9 @@ void	put_str_8_chars(std::string s)
 void	Contact::desplay_phonebook_contacts(void)
 {
 	std::cout << std::right
-	<< std::setw(15); put_str_8_chars(get_first_name()) ; std::cout << " |"
-	<< std::setw(15); put_str_8_chars(get_last_name()) ; std::cout << " |"
-	<< std::setw(15); put_str_8_chars(get_nickname()) ; std::cout << " |" << std::endl;
+	<< std::setw(11 - first_name.length()); put_str_8_chars(get_first_name()) ;std::cout << "|"
+	<< std::setw(10 - last_name.length()); put_str_8_chars(get_last_name()) ; std::cout << "|"
+	<< std::setw(9 - nickname.length()); put_str_8_chars(get_nickname()) ;  std::cout << "|" << std::endl;
 }
-
 
 #endif

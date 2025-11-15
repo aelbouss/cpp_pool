@@ -49,16 +49,18 @@ void	PhoneBook::desplay_all_contacts(void)
 {
 	int i;
 
+	std::cout << "*-------------------------------------*" << std::endl;
 	std::cout << std::right 
-	<< std::setw(6) << "Index"
-	<< std::setw(15) << "First Name"
-	<< std::setw(15) << "Last Name"
-	<< std::setw(15) << "Nickname" << std::endl;
+	<< std::setw(1) << "Index|"
+	<< std::setw(2) << " First Name|"
+	<< std::setw(2) << " Last Name|"
+	<< std::setw(2) << " Nickname|" << std::endl;
+	std::cout << "*-------------------------------------*" << std::endl;
 	for(i = 0; i < contacts_num ; i++)
 	{
-		std::cout << std::setw(6) << i << " |";
+		std::cout << std::setw(5) << i << "|";
 		contacts[i].desplay_phonebook_contacts();
-		std::cout << "\n";
+		std::cout << "*-------------------------------------*" << std::endl;
 	}
 }
 
@@ -117,7 +119,7 @@ bool	contain_only_digits(std::string str)
 	i = 0;
 	while (str[i])
 	{
-		if (!std::isdigit(str[i]))
+		if (!std::isdigit(str[i]) && str[i] != '-' && str[i] != '+')
 			return (false);
 		i++;
 	}

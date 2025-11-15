@@ -5,7 +5,7 @@
 int	main(int ac, char *argv[])
 {
 	std::string	str;
-	int	j;
+	size_t j;
 
 	if (ac == 1)
 	{
@@ -17,7 +17,7 @@ int	main(int ac, char *argv[])
 	{
 		str = argv[j];
 		for(size_t i = 0 ; i < str.length() ; i++)
-			std::cout << static_cast<char>(std::toupper(static_cast<unsigned char>(str[i])));
+			std::cout << static_cast<char>(std::toupper(str[i]));
 		j++;
 	}
 	std::cout << "\n"<<std::endl;
