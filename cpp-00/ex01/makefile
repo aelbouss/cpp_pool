@@ -10,12 +10,16 @@ all : $(TARGET)
 
 $(TARGET): $(OBJ)
 	$(CPPC) $(CPPFLAGS) $(STD) $(OBJ) -o $(TARGET)
-%.o : %.cpp
+
+%.o : %.cpp %.hpp
 	$(CPPC) $(CPPFLAGS) $(STD) -c $< -o $@
+
 clean:
 	rm -rf $(OBJ)
+
 fclean: clean
 	rm -rf $(TARGET)
+
 re: fclean
 	$(MAKE) all
 

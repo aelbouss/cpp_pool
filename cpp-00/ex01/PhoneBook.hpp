@@ -36,10 +36,12 @@ class	PhoneBook
 
 void	PhoneBook::add_contact(void)
 {
-	if (idx >= 7)
+	if (idx >= 8)
 		idx = 0;
 	contacts[idx].assign_data();
 	idx++;
+	if (contacts_num <= 7)
+		contacts_num++;
 	return ;
 }
 
@@ -52,13 +54,12 @@ void	PhoneBook::desplay_all_contacts(void)
 	<< std::setw(15) << "First Name"
 	<< std::setw(15) << "Last Name"
 	<< std::setw(15) << "Nickname" << std::endl;
-	for(i = 0; i < idx ; i++)
+	for(i = 0; i < contacts_num ; i++)
 	{
 		std::cout << std::setw(6) << i << " |";
 		contacts[i].desplay_phonebook_contacts();
 		std::cout << "\n";
 	}
-	contacts_num = i - 1;
 }
 
 
@@ -106,6 +107,7 @@ void	PhoneBook::search_for_contact(void)
 void	PhoneBook::set_idx(void)
 {
 	idx = 0;
+	contacts_num = 0;
 }
 
 bool	contain_only_digits(std::string str)

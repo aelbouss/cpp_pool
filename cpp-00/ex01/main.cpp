@@ -13,59 +13,6 @@ void	phonebook_options(void)
 		std::cout << "*************************************************" << RESET << std::endl;
 }
 
-/*
-int	main(void)
-{
-
-	PhoneBook	myphonebook;
-	std::string	option ;
-	int	status, index;
-
-	status  = 0;
-	myphonebook.idx_init();
-	do
-	{
-		phonebook_options();
-		std::cout << "\n\nChoose an option : ";
-		std::cin >> std::ws;
-		if (std::cin.eof())
-		{
-				std::cout << "\nEOF\n";
-				exit (0);
-		}
-		std::cin >> option;
-		if (option == "ADD")
-			myphonebook.add_contact();
-		else if (option == "SEARCH")
-		{
-			myphonebook.get_all_arr();
-			
-			while (true)
-			{
-				std::cout << "Enter The Index Of The User You Want : ";
-				//getline(std::cin, fname);
-				std::cin >> index;
-				if (std::cin.eof())
-				{
-					std::cout << "\nEOF\n";
-					exit(0);
-				}
-				
-			}
-			myphonebook.search_for_contact(fname);
-		}
-		else if (option == "EXIT")
-			status = 1;
-		else
-			std::cout <<  GREEN << "\n Invalid Option ! Try Again "<< RESET << std::endl;
-	}while (status != 1);
-
-	return (0);
-}
-
-
-*/
-
 void	eof_handling(void)
 {
 	if (std::cin.eof())
@@ -74,7 +21,6 @@ void	eof_handling(void)
 			exit (0);
 	}
 }
-
 
 int	main(void)
 {
