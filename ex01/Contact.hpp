@@ -165,28 +165,21 @@ void	Contact::get_contact_infos(void)
 	std::cout << "the darest secret : " << get_darkest_secret() << RESET << std::endl;
 }
 
-void	put_str_8_chars(std::string s)
+void	put_str_8_chars(std::string str)
 {
-	int	i;
-
-	i = 0;
-	std::cout << ' ';
-	while (s[i] && i < 8)
-	{
-		std::cout << s[i];
-		i++;
-	}
-	if (s[i])
-		std::cout << '.';
+	if (str.length() > 10)
+        str = str.substr(0, 9) + ".";
+    std::cout << std::setw(10) << str;
 }
-
 
 void	Contact::desplay_phonebook_contacts(void)
 {
-	std::cout << std::right
-	<< std::setw(11 - first_name.length()); put_str_8_chars(get_first_name()) ;std::cout << "|"
-	<< std::setw(10 - last_name.length()); put_str_8_chars(get_last_name()) ; std::cout << "|"
-	<< std::setw(9 - nickname.length()); put_str_8_chars(get_nickname()) ;  std::cout << "|" << std::endl;
+	put_str_8_chars(first_name);
+    std::cout << "|";
+    put_str_8_chars(last_name);
+    std::cout << "|";
+    put_str_8_chars(nickname);
+    std::cout << "|\n";
 }
 
 #endif

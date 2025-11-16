@@ -42,7 +42,7 @@ int	main(void)
 		}
 		else if (option == "EXIT")
 		{
-			std::cout << "exit\n";
+			exit(0);
 		}
 		else
 		{

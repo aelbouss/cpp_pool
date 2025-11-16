@@ -5,14 +5,14 @@ STD = -std=c++98
 
 SRCS = tests.cpp Account.cpp
 OBJS = $(SRCS:%.cpp=%.o)
+HEADERS = Account.hpp
 
 all : $(TARGET)
 
 $(TARGET) : $(OBJS)
 	$(CPPC) $(CPPFLAGS) $(STD) $(OBJS) -o $(TARGET)
-	./$(TARGET) > out.log
 
-%.o : %.cpp
+%.o : %.cpp $(HEADERS)
 	$(CPPC) $(CPPFLAGS) $(STD)  -c $< -o $@
 
 clean : 
@@ -22,4 +22,5 @@ fclean : clean
 re : fclean
 	$(MAKE) all
 
+.PHONY : all clean fclean re
 .SECONDARY : $(OBJS)

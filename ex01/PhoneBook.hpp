@@ -88,15 +88,10 @@ void	PhoneBook::search_for_contact(void)
 		if (!option.empty() && contain_only_digits(option))
 		{
 			i = atoi((const char *)&option[0]);
-			if (i < 0 || i > contacts_num)
-			{
+			if (i < 0 || i > contacts_num - 1)
 				std::cout << "invalid index" << std::endl;
-			}
 			else
-			{
-				flag = true;
-				break ;
-			}
+				{flag = true; break;}
 		}
 	} while (1);
 	if (flag == true)

@@ -1,7 +1,5 @@
 #include  "Account.hpp"
 
-
-
 // recreate the lost file which is Account.hpp
 // check the header file Account.hpp to check the missed functions
 // check the  log  file  to  usedrtand hoe  the  class ACCount was implimented
@@ -15,27 +13,18 @@ int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
 
-int	Account::getNbAccounts( void )
-{
-    return (_nbAccounts);
-}
+int	Account::getNbAccounts( void ) { return (_nbAccounts); }
 
-int	Account::getTotalAmount( void )
-{
-    return (_totalAmount);
-}
+int	Account::getTotalAmount( void ) { return (_totalAmount); }
 
-int	Account::getNbDeposits( void )
-{
-    return (_totalNbDeposits);
-}
 
-int	Account::getNbWithdrawals( void )
-{
-    return (_totalNbWithdrawals);
-}
+int	Account::getNbDeposits( void ) { return (_totalNbDeposits); }
 
-void	displayTimestamp( void )
+int	Account::getNbWithdrawals( void ) { return (_totalNbWithdrawals); }
+
+int		Account::checkAmount( void ) const { return (_amount); }
+
+void	Account::_displayTimestamp( void )
 {
     std::time_t curr_time = std::time(0);
     std::tm *local_time = localtime(&curr_time);
@@ -52,7 +41,7 @@ void	displayTimestamp( void )
 
 void	Account::displayAccountsInfos( void )
 {
-    displayTimestamp();
+    _displayTimestamp();
     std::cout << "accounts:"<< getNbAccounts() << ';';
     std::cout << "total:" << getTotalAmount() << ';';
     std::cout << "deposits:"<< getNbDeposits() << ';';
@@ -68,7 +57,7 @@ void	Account::makeDeposit( const int deposit )
     _totalAmount += deposit;
     _nbDeposits++;
     _totalNbDeposits++;
-     displayTimestamp();
+     _displayTimestamp();
     std::cout << "index:"<<_accountIndex << ';';
     std::cout << "p_amount:" << p_amount << ';';
     std::cout << "deposit:" << deposit << ';';
@@ -81,7 +70,7 @@ bool	Account::makeWithdrawal( const int withdrawal )
    int p_amount;
 
     p_amount = _amount;
-     displayTimestamp();
+    _displayTimestamp();
     std::cout << "index:"<<_accountIndex << ';';
     std::cout << "p_amount:" << p_amount << ';';
     if ((_amount - withdrawal) <  0)
@@ -99,11 +88,9 @@ bool	Account::makeWithdrawal( const int withdrawal )
     return (true);
 }
 
-int		Account::checkAmount( void ) const { return (_amount); }
-
 Account::Account( const int initial_deposit )
 {
-    displayTimestamp();
+    _displayTimestamp();
     _amount = initial_deposit;
 	_accountIndex = _nbAccounts++;
     std::cout << "index:" << _accountIndex << ';';
@@ -114,7 +101,7 @@ Account::Account( const int initial_deposit )
 
 Account::~Account( void )
 {
-     displayTimestamp();
+     _displayTimestamp();
     std::cout << "index:" << _accountIndex << ';';
     std::cout << "amount:" << _amount << ';';
     std::cout << "closed" << std::endl;
@@ -123,7 +110,7 @@ Account::~Account( void )
 
 void	Account::displayStatus( void ) const
 {
-	displayTimestamp();
+	_displayTimestamp();
     std::cout << "index:" << _accountIndex << ';';
     std::cout << "amount:" << _amount << ';';
     std::cout << "deposits:" << _nbDeposits << ';';

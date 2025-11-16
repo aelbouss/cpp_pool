@@ -23,6 +23,6 @@ fclean: clean
 re: $(fclean)
 	$(MAKE) all
 
-.PHONY : all clean
+.PHONY : all clean fclean re
 .SECONDARY : $(OBJS)
 
