@@ -41,7 +41,7 @@ int	main(void)
 			myphonebook.search_for_contact();
 		}
 		else if (option == "EXIT")
-		{
+		{	std::cout<< BLUE << "the phonebook exited\n" << RESET << std::endl;
 			exit(0);
 		}
 		else

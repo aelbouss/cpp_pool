@@ -4,19 +4,22 @@
 #include <ctype.h>
 #include <cstdlib>
 
+
 # ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-// macros 
+// macros
 
 # define RED "\033[1;31m"
 # define RESET "\033[0m"
 # define GREEN "\033[32m"
+# define BLUE "\33[34m"
 
 // class section
 
 void	eof_handling(void);
 void	put_str_8_chars(std::string s);
+int	validate_phonenumber(std::string str);
 
 class	Contact
 {
@@ -82,7 +85,7 @@ void	Contact::take_nick_name(void)
 {
 	do
 	{
-		std::cout << "enter the nick name : ";
+		std::cout << "enter the nickname : ";
 		getline(std::cin, nickname);
 		eof_handling();
 		if (nickname.empty())
@@ -101,6 +104,12 @@ void	Contact::take_phone_number(void)
 		eof_handling();
 		if (phone_number.empty())
 			std::cout << "the filed cannot be empty try again" << std::endl;
+		if (validate_phonenumber(phone_number) != 0)
+		{
+			std::cout << "invalid phone number" << std::endl;
+			std::cout << "< usage : +212... | OR |  06... > \n" << std::endl;
+			continue;
+		}
 		if (!phone_number.empty())
 			break ;
 	}while(1);		
@@ -170,6 +179,17 @@ void	put_str_8_chars(std::string str)
 	if (str.length() > 10)
         str = str.substr(0, 9) + ".";
     std::cout << std::setw(10) << str;
+}
+
+int	validate_phonenumber(std::string str)
+{
+	if (str[0] != '+' && !isdigit(str[0]))
+		return (1);
+	for (size_t i = 1 ; i < str.length() ; i++)
+	{
+		if (!isdigit(str[i])) {return(1);}
+	}
+	return (0);
 }
 
 void	Contact::desplay_phonebook_contacts(void)
