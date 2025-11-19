@@ -3,9 +3,9 @@ CPPC = c++
 CPPFLAGS = -Wall -Werror -Wextra 
 STD = -std=c++98
 
-SRC = main.cpp 
+SRC = main.cpp Contact.cpp PhoneBook.cpp
 OBJ = $(SRC:%.cpp=%.o)
-HEADERS = Contact.hpp PhoneBook.hpp
+HEADERS = Contact.hpp PhoneBook.hpp 
 
 all : $(TARGET)
 

@@ -8,10 +8,7 @@ int	main(int ac, char *argv[])
 	size_t j;
 
 	if (ac == 1)
-	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-		return (0);
-	}
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" ;
 	j = 1;
 	while(argv[j])
 	{
@@ -20,6 +17,6 @@ int	main(int ac, char *argv[])
 			std::cout << static_cast<char>(std::toupper(str[i]));
 		j++;
 	}
-	std::cout << "\n"<<std::endl;
+	std::cout << "\n";
 	return (0);
 }
