@@ -20,7 +20,7 @@ clean:
 fclean: clean
 	rm -rf $(TARGET)
 
-re: $(fclean)
+re: fclean
 	$(MAKE) all
 
 .PHONY : all clean fclean re

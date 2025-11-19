@@ -1,11 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Account.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aelbouss <aelbouss@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/19 23:39:09 by aelbouss          #+#    #+#             */
+/*   Updated: 2025/11/19 23:39:10 by aelbouss         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include  "Account.hpp"
-
-// recreate the lost file which is Account.hpp
-// check the header file Account.hpp to check the missed functions
-// check the  log  file  to  usedrtand hoe  the  class ACCount was implimented
-// learn about the   variable  very  good .
-
-// getters :
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -105,7 +110,7 @@ Account::~Account( void )
     std::cout << "index:" << _accountIndex << ';';
     std::cout << "amount:" << _amount << ';';
     std::cout << "closed" << std::endl;
-    _totalAmount = _totalAmount + _amount;
+    _totalAmount = _totalAmount - _amount;
 }
 
 void	Account::displayStatus( void ) const

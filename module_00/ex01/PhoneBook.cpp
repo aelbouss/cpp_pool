@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aelbouss <aelbouss@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/19 23:39:14 by aelbouss          #+#    #+#             */
+/*   Updated: 2025/11/19 23:39:15 by aelbouss         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 
 void	PhoneBook::add_contact(void)
@@ -11,7 +23,7 @@ void	PhoneBook::add_contact(void)
 	return ;
 }
 
-void	PhoneBook::desplay_all_contacts(void)
+void	PhoneBook::desplay_all_contact(void)
 {
 	int i;
 
@@ -30,7 +42,6 @@ void	PhoneBook::desplay_all_contacts(void)
 	}
 }
 
-
 void	PhoneBook::search_for_contact(void)
 {
 	std::string	option;
@@ -42,7 +53,7 @@ void	PhoneBook::search_for_contact(void)
 		std::cout << BLUE <<"\nthe phonebook is empty try to add some contacts" << RESET << std::endl;
 		return ;
 	}
-	desplay_all_contacts();
+	desplay_all_contact();
 	flag = false;
 	do
 	{

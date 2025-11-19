@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aelbouss <aelbouss@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/19 23:39:18 by aelbouss          #+#    #+#             */
+/*   Updated: 2025/11/19 23:39:19 by aelbouss         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <cstdlib>
 #include <ctype.h>
@@ -10,12 +22,10 @@
 # define PHONEBOOK_HPP
 
 
-// macros 
-
+// macros
 # define RED "\033[1;31m"
 # define RESET "\033[0m"
 # define GREEN "\033[32m"
-
 
 void	eof_handling(void);
 bool	contain_only_digits(std::string str);
@@ -29,7 +39,7 @@ class	PhoneBook
 	public :
 		void	add_contact(void);
 		void	search_for_contact(void);
-		void	desplay_all_contacts(void);
+		void	desplay_all_contact(void);
 		void	set_idx(void);
 };
 

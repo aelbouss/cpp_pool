@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aelbouss <aelbouss@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/19 23:39:39 by aelbouss          #+#    #+#             */
+/*   Updated: 2025/11/19 23:39:40 by aelbouss         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.hpp"
 
 void	Contact::take_first_name(void)
@@ -73,7 +85,7 @@ void	Contact::take_darkest_secret(void)
 			std::cout << "the filed cannot be empty try again" << std::endl;
 		if (!darkest_secret.empty())
 			break ;
-	}while(1);	
+	}while(1);
 }
 
 void	Contact::assign_data(void)
@@ -85,32 +97,15 @@ void	Contact::assign_data(void)
 	take_darkest_secret();
 }
 
-/* =>  geters  <= */
+std::string	Contact::get_first_name( void ){ return (first_name); }
 
-std::string	Contact::get_first_name(void)
-{
-	return (first_name);
-}
+std::string	Contact::get_last_name( void ) { return (last_name); }
 
-std::string	Contact::get_last_name(void)
-{
-	return (last_name);
-}
+std::string	Contact::get_nickname( void ) { return (nickname); }
 
-std::string	Contact::get_nickname(void)
-{
-	return (nickname);
-}
+std::string	Contact::get_phone_number( void ) { return (phone_number); }
 
-std::string	Contact::get_phone_number(void)
-{
-	return (phone_number);
-}
-
-std::string	Contact::get_darkest_secret(void)
-{
-	return (darkest_secret);
-}
+std::string	Contact::get_darkest_secret( void ) { return (darkest_secret); }
 
 void	Contact::get_contact_infos(void)
 {
