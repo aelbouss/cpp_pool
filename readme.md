@@ -1,2 +1,2 @@
 # CPP MODULES
-##                     just a playground to descover cpp
+##                     just a playground to discover cpp
