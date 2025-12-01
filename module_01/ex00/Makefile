@@ -9,7 +9,6 @@ HEADERS = Zombie.hpp
 
 all: $(TARGET)
 
-
 $(TARGET): $(OBJS)
 	$(CPPC) $(STD) $(OBJS) -o $(TARGET)
 
