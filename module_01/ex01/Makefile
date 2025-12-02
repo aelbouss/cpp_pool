@@ -2,9 +2,8 @@ CPPC = c++
 CPPFLAGS = -Wall -Werror -Wextra
 STD = -std=c++98
 
-
 TARGET = MoreBrainzzz
-SRCS =  main.cpp Zombie.cpp zombieHorde.cpp Zombie.hpp
+SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:%.cpp=%.o)
 HEADERS = Zombie.hpp
 
