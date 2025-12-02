@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"zombie.hpp": "c"
+		"zombie.hpp": "c",
+		"new": "cpp"
 	}
 }

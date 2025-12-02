@@ -5,7 +5,7 @@ Zombie::Zombie(void){}
 
 Zombie::~Zombie()
 {
-	std::cout << "the Zombie : " << Name << " is destroyed" << std::endl;
+	std::cout << RED << "the Zombie : " << Name << " is destroyed" << RESET <<std::endl;
 }
 
 void	Zombie::set_name(std::string name)
@@ -15,5 +15,5 @@ void	Zombie::set_name(std::string name)
 
 void    Zombie::announce ( void )
 {
-	std::cout << Name << " : Brainzzzzzzzzzzzzz" << std::endl;
+	std::cout << GREEN << Name << " : Brainzzzzzzzzzzzzz"<< RESET << std::endl;
 }
