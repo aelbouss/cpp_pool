@@ -1,9 +1,10 @@
 CPPC = c++
 CPPFLAGS = -Wall -Werror -Wextra
-STD = std=c++98
+STD = -std=c++98
+
 
 TARGET = Brainzzz
-SRCS = main.cpp newZombie.cpp randomChumo.cpp Zombie.cpp
+SRCS = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 HEADERS = Zombie.hpp
 

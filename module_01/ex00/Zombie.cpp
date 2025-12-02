@@ -2,29 +2,11 @@
 
 void	Zombie::announce( void )
 {
-	std::cout << Name << "BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << GREEN << Name << ": BraiiiiiiinnnzzzZ..." << RESET << std::endl;
 }
+Zombie::Zombie( std::string name ) : Name(name) {}
 
-Zombie	*Zombie::newZombie( std::string name )
+Zombie::~Zombie()
 {
-	Zombie	*z = new Zombie(name);
-	if (!z)
-		return (NULL);
-	return (z);
+	std::cout << RED <<"the Zombie " << Name << " is destroyed" << RESET << std::endl;
 }
-
-void	Zombie::randomChump( std::string name );
-{
-	Zmobie	z;
-
-	z.set_name(name);
-	z.announce();
-	z.~Zmobie();
-}
-
-/*Zombie::Zombie(string::name)  Name(name) {}
-
-~Zombie::Zombie()
-{
-	std::cout << "the Zombie "<< name <<"destroyed" std::endl;
-}*/

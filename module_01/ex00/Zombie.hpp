@@ -15,10 +15,14 @@ class   Zombie
     public:
         Zombie( std::string );
         void    announce ( void );
-        void    randomChump( std::string name );
-        void    set_name(std::string name);
-        Zombie  *newZombie( std::string name );
         ~Zombie();
 };
+
+    void	randomChump( std::string name );
+    Zombie  *newZombie( std::string name );
+
+    # define GREEN "\033[0;32m"
+    # define RED   "\033[0;31m"
+    # define RESET "\033[0m"
 
 # endif
