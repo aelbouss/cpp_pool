@@ -1,14 +1,14 @@
-CPPC = cc
+CPPC = c++
 CPPFLAGS = -Wall -Werror -Wextra
 STD = -std=c++98
 
 SRCS = $(wildcard *.cpp)
-OBJS = $(srcs:%.cpp=%.o)
+OBJS = $(SRCS:%.cpp=%.o)
 TARGET = This_Is_Brain
 
 all : $(TARGET)
 
-$(TARGET) : $(OBJ)
+$(TARGET) : $(OBJS)
 	$(CPPC) $(CPPFLAGS) $(STD) $(OBJS) -o $(TARGET)
 
 %.o : %.cpp 
@@ -16,6 +16,7 @@ $(TARGET) : $(OBJ)
 
 clean : 
 	rm -rf $(OBJS)
+
 fclean : clean
 	rm -rf  $(TARGET)
 
