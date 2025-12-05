@@ -10,10 +10,9 @@ int main(int ac, char **av)
     }
     if (!check_substr_existance(av[1], av[2]))
     {
-        std::cout << "the  substr exists" << std::endl;
-        copy_content(av[1]);
+        costume_sed(av[1], av[2], av[3]);
     }
     else
-        std::cout << "the  substr doesnt  exist" << std::endl;
+        return (1);
     return (0);
 }

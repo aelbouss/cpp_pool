@@ -10,6 +10,7 @@
  // prototypes  section
 
 int check_substr_existance(const char *filename, const char *substr);
-int copy_content(char *oldfile);
+int replace_str(std::string& main_str  , char *substr, char *newstr);
+int costume_sed(char *readfile, char *substr, char *rep);
 
 # endif

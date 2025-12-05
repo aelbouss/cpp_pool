@@ -23,16 +23,22 @@ int check_substr_existance(const char *filename, const char *substr)
     return (1);
 }
 
-int replace_str(char *str , char *substr, char *newstr)
+int replace_str(std::string& main_str  , char *substr, char *newstr)
 {
     size_t  pos;
 
-    if (!substr || !newstr || !str)
+    if (!substr || !newstr || main_str.empty())
         return (1);
-    std::string sub_str(sub_str);
+    std::string sub_str(substr);
     std::string new_str(newstr);
-    std::string mainstr(str);
-    while ((pos = ))    //  replace  the old str
+    pos = 0;
+    while ((pos = main_str.find(sub_str, pos)) != std::string::npos) 
+    {
+        main_str.erase(pos, main_str.length());
+        main_str.insert(pos, new_str);
+        pos++;
+    } 
+    return (0);
 }
 
 int costume_sed(char *readfile, char *substr, char *rep)
@@ -41,7 +47,7 @@ int costume_sed(char *readfile, char *substr, char *rep)
     std::ofstream outfile;
     std::string newfile;
     std::string line;
-    int pos;
+
 
     if (!rep || !infile)
     {
@@ -54,6 +60,7 @@ int costume_sed(char *readfile, char *substr, char *rep)
         std::cerr << "error occurs while opening the file : " << readfile << std::endl;
         return (1);
     }
+    newfile = std::string(readfile) + ".replace";
     outfile.open(newfile.c_str(), std::ios::out);
     if (!outfile.is_open())
     {
@@ -63,6 +70,11 @@ int costume_sed(char *readfile, char *substr, char *rep)
 
     while (std::getline(infile, line))
     {
+        std::cout << " line before : => " << line << std::endl;
+        replace_str(line, substr, rep);
+        std::cout << " line after : => " << line << std::endl;
+        outfile << line << '\n';
 
     }
+    return (0);
 }
