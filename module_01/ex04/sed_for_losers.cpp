@@ -23,35 +23,46 @@ int check_substr_existance(const char *filename, const char *substr)
     return (1);
 }
 
-int copy_content(char *oldfile)
+int replace_str(char *str , char *substr, char *newstr)
 {
-    std::ofstream outfile;
+    size_t  pos;
+
+    if (!substr || !newstr || !str)
+        return (1);
+    std::string sub_str(sub_str);
+    std::string new_str(newstr);
+    std::string mainstr(str);
+    while ((pos = ))    //  replace  the old str
+}
+
+int costume_sed(char *readfile, char *substr, char *rep)
+{
     std::ifstream infile;
+    std::ofstream outfile;
     std::string newfile;
     std::string line;
+    int pos;
 
-    if (!oldfile)
+    if (!rep || !infile)
     {
-        std::cerr << "Bad file" << std::endl;
-        return (1);
+        std::cout << "invalid arguments" << std::endl;
+        return (1);outfile.open(newfile.c_str(), std::ios::out);
     }
-    infile.open(oldfile, std::ios::in);
+    infile.open(readfile, std::ios::in);
     if (!infile.is_open())
     {
-        std::cerr << "error occurs while creating the file" << std::endl;
-        return (1);  
+        std::cerr << "error occurs while opening the file : " << readfile << std::endl;
+        return (1);
     }
-    newfile = std::string(oldfile) + ".replace";
-
     outfile.open(newfile.c_str(), std::ios::out);
     if (!outfile.is_open())
     {
         std::cerr << "error occurs while creating the file" << std::endl;
         return (1);
     }
-     while (std::getline(infile, line))
-     {
-        outfile << line << '\n';   // add newline back
+
+    while (std::getline(infile, line))
+    {
+
     }
-    return (0);
 }
