@@ -23,31 +23,35 @@ int check_substr_existance(const char *filename, const char *substr)
     return (1);
 }
 
-int find_replace(char *substr, char *substitution, char *filename)
+int copy_content(char *oldfile)
 {
-    std::string line;
+    std::ofstream outfile;
+    std::ifstream infile;
     std::string newfile;
-    std::string extension;
+    std::string line;
 
-    std::ifstream infile(filename);
-    if (!infile)
+    if (!oldfile)
     {
-        std::cerr << "error occurs while open a file" << std::endl;
+        std::cerr << "Bad file" << std::endl;
         return (1);
     }
-    extension = ".replace";
-    newfile = filename + extension;
-    std::ifstream outfile(newfile);
-    if (!outfile)
+    infile.open(oldfile, std::ios::in);
+    if (!infile.is_open())
     {
-        std::cerr << "error occurs while open the file: " << newfile << std::endl;
+        std::cerr << "error occurs while creating the file" << std::endl;
+        return (1);  
+    }
+    newfile = std::string(oldfile) + ".replace";
+
+    outfile.open(newfile.c_str(), std::ios::out);
+    if (!outfile.is_open())
+    {
+        std::cerr << "error occurs while creating the file" << std::endl;
         return (1);
     }
-    while (std::getline(filename, line))
-    {
-        if (line.find(substr) != std::string::npos)
-        {
-            //  replace a string  in  a line .
-        }
+     while (std::getline(infile, line))
+     {
+        outfile << line << '\n';   // add newline back
     }
+    return (0);
 }

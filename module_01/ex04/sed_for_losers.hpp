@@ -10,5 +10,6 @@
  // prototypes  section
 
 int check_substr_existance(const char *filename, const char *substr);
+int copy_content(char *oldfile);
 
 # endif
