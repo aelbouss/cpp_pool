@@ -1,15 +1,15 @@
 #include  "Harl.hpp"
 
-int main(void)
+int main(int ac, char **av)
 {
     Harl    comp;
+    std::string str;
 
-    comp.complain("INFOS");
-    //comp.complain("DEBUG");
-    // comp.complain("ERROR");
-    // comp.complain("INFOS");
-    // comp.complain("ERROR");
-    // comp.complain("NOTHING");
-    //comp.complain("");
+    if (ac != 2)
+        std::cerr << "<usage> : ./ProgramName  Arg" << std::endl;
+    if (!av[1])
+        return (1) ;
+    str = av[1];
+    comp.complain(str);
     return (0);
 }
