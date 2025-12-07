@@ -7,7 +7,7 @@ int main(void)
     comp.complain("DEBUG");
     comp.complain("ERROR");
     comp.complain("INFOS");
-    comp.complain("WARNING");
+    comp.complain("ERROR");
     comp.complain("NOTHING");
     comp.complain("");
     return (0);

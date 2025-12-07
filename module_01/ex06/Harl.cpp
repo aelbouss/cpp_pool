@@ -1,4 +1,8 @@
-#include "Harl.hpp"
+
+
+#include  "Harl.hpp"
+
+
 
 void    Harl::debug( void )
 {
@@ -25,17 +29,34 @@ void    Harl::error ( void )
 
 void    Harl::complain( std::string level )
 {
-    void    (Harl::*lvlpointer[])(void) = {&Harl::debug, &Harl::infos, &Harl::warning, &Harl::error};
+    void    (Harl::*lvlpointer[])(void) = {&Harl::debug, &Harl::infos, &Harl::warning , &Harl::error};
     std::string levels[] = {"DEBUG", "INFOS", "WARNING", "ERROR"};
-    if (level.empty())
+    int option = -1;
+    for(int i = 0 ; i < 4 ; i++)
     {
-        std::cerr << RED <<"empty input !"<< std::endl;
-        return ;
+        if (level == levels[i])
+        {
+            option = i;
+            break ;
+        }
     }
-    for(size_t i = 0 ; i < 4; i++)
+    switch (option)
     {
-        if (level == levels[i]) {(this->*lvlpointer[i])() ; return ;}
+        case 0 :
+            std::cout << "[ DEBUG ]" << std::endl;
+            (this->*lvlpointer[0])();
+        case 1 :
+            std::cout << "[ INFOS ]" << std::endl;
+            (this->*lvlpointer[1])();
+        case 2 :
+             std::cout << "[ WARNING ]" << std::endl;
+            (this->*lvlpointer[2])();
+        case 3 :
+             std::cout << "[ ERROR ]" << std::endl;
+            (this->*lvlpointer[3])();
+            break;
+        default:
+            std::cerr << "[ Probably complaining about insignificant problems ]" << std::endl;
+            break;
     }
-    std::cerr << RED << "invalid complain level !" << RESET << std::endl;
-    std::cerr << RED << "the available complain levels are : DEBUG , INFOS , WARNING , ERROR" << RESET << std::endl;
 }
