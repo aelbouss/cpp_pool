@@ -3,7 +3,7 @@
 Zombie	*zombieHorde( int N, std::string name )
 {
 
-	if (N < std::numeric_limits<int>::min()|| N > std::numeric_limits<int>::max() || N < 0)
+	if (N < 0)
 	{
 		std::cerr << "(N) is invalid for allocation" << std::endl;
 		exit(1);

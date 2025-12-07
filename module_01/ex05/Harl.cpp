@@ -6,7 +6,7 @@ void    Harl::debug( void )
     << "ketchup burger. I really do!" << RESET << std::endl;
 }
 
-void	Harl::infos( void )
+void	Harl::info( void )
 {
     std::cout<< GREEN << "I cannot believe adding extra bacon costs more money. You didn't put"
     << "enough bacon in my burger! If you did, I wouldn't be asking for more!" << RESET << std::endl;
@@ -25,17 +25,12 @@ void    Harl::error ( void )
 
 void    Harl::complain( std::string level )
 {
-    void    (Harl::*lvlpointer[])(void) = {&Harl::debug, &Harl::infos, &Harl::warning, &Harl::error};
-    std::string levels[] = {"DEBUG", "INFOS", "WARNING", "ERROR"};
-    if (level.empty())
-    {
-        std::cerr << RED <<"empty input !"<< std::endl;
-        return ;
-    }
+    void    (Harl::*lvlpointer[])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
     for(size_t i = 0 ; i < 4; i++)
     {
         if (level == levels[i]) {(this->*lvlpointer[i])() ; return ;}
     }
-    std::cerr << RED << "invalid complain level !" << RESET << std::endl;
-    std::cerr << RED << "the available complain levels are : DEBUG , INFOS , WARNING , ERROR" << RESET << std::endl;
+    std::cerr << RED << "invalid complain !" << RESET << std::endl;
 }

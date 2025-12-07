@@ -7,7 +7,7 @@ class	Harl
 {
 	private:
 		void	debug( void );
-		void	infos( void );
+		void	info( void );
 		void	warning( void );
 		void	error ( void ) ;
 	public:

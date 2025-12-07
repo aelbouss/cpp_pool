@@ -5,9 +5,11 @@ int check_substr_existance(const char *filename, const char *substr)
 {
     std::string line;
 
-    if (!substr || !filename)
+    if (!substr ||substr[0] == '\0')
+    {
+        std::cerr << "empty argument !" << std::endl;
         return (1);
-    
+    }
     std::ifstream infile(filename);
     if (!infile)
     {
@@ -23,7 +25,7 @@ int check_substr_existance(const char *filename, const char *substr)
     return (1);
 }
 
-int replace_str(std::string& main_str  , char *substr, char *newstr)
+int replace_str(std::string& main_str  , char *substr, char *newstr, int firststr_len)
 {
     size_t  pos;
 
@@ -34,7 +36,7 @@ int replace_str(std::string& main_str  , char *substr, char *newstr)
     pos = 0;
     while ((pos = main_str.find(sub_str, pos)) != std::string::npos) 
     {
-        main_str.erase(pos, main_str.length());
+        main_str.erase(pos, firststr_len);
         main_str.insert(pos, new_str);
         pos++;
     } 
@@ -52,27 +54,24 @@ int costume_sed(char *readfile, char *substr, char *rep)
     if (!rep || !infile)
     {
         std::cout << "invalid arguments" << std::endl;
-        return (1);outfile.open(newfile.c_str(), std::ios::out);
+        return (1);
     }
-    infile.open(readfile, std::ios::in);
+    infile.open(readfile);
     if (!infile.is_open())
     {
         std::cerr << "error occurs while opening the file : " << readfile << std::endl;
         return (1);
     }
     newfile = std::string(readfile) + ".replace";
-    outfile.open(newfile.c_str(), std::ios::out);
+    outfile.open(newfile.c_str());
     if (!outfile.is_open())
     {
         std::cerr << "error occurs while creating the file" << std::endl;
         return (1);
     }
-
     while (std::getline(infile, line))
     {
-        std::cout << " line before : => " << line << std::endl;
-        replace_str(line, substr, rep);
-        std::cout << " line after : => " << line << std::endl;
+        replace_str(line, substr, rep, strlen(substr));
         outfile << line << '\n';
 
     }
