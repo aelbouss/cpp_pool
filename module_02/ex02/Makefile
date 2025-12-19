@@ -2,7 +2,7 @@ CPPC = c++
 CPPFLAGS = -Wall -Werror -Wextra
 STD = -std=c++98
 
-SRCS = Fixed.cpp arithmetics.cpp comparison.cpp increments_decrements.cpp  main.cpp overloaded_functions.cpp
+SRCS = Fixed.cpp  main.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 HEADER = Fixed.hpp
 
