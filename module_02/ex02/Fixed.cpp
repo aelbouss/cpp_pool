@@ -3,40 +3,35 @@
 Fixed::Fixed() // default constructor
 {
 	fixedpoint = 0;
-	std::cout << "Default constructor called" << std::endl;  
+	  
 } 
 
 Fixed::Fixed( const int nbr) // constructor builds int
 {
-	this->fixedpoint = nbr * pow(2, scaling_factor);
-	std::cout << "Int constructor called" << std::endl;
+	setRawBits(roundf(nbr * pow(2, scaling_factor)));
 }
 
 Fixed::Fixed( const float nbr) // constructor builds float
 {
-	this->fixedpoint = roundf(nbr * pow(2, scaling_factor));
-	std::cout << "Float constructor called" << std::endl;
+	setRawBits(roundf(nbr * pow(2, scaling_factor)));
 }
 
 Fixed& Fixed::operator = ( const Fixed& src) // copy assignment  operator
 {
 	if (this == &src)
 		return (*this);
-	std::cout << "Copy assignment operator called" << std::endl;
 	this->fixedpoint = src.getRawBits();
 	return (*this);
 }
 
 Fixed::Fixed( const Fixed& src) // copy constructor
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 }
 
 Fixed::~Fixed() // destructor
 {
 	this->fixedpoint = 0;
-	std::cout << "Destructor called" << std::endl;
 }
 
 int	Fixed::getRawBits( void ) const
