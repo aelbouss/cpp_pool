@@ -18,6 +18,17 @@ ClapTrap::ClapTrap(const ClapTrap& src)
 	std::cout << BLUE << "copy Constructor Called"<< RESET << std::endl;
 }
 
+ClapTrap&	ClapTrap::operator = (const ClapTrap& src)
+{
+	if (this == &src)
+		return (*this);
+	this->Name = src.Name;
+	this->hit_points = src.hit_points;
+	this->Energy_points = src.Energy_points;
+	this->Attack_damage = src.Attack_damage;
+	return (*this);
+}
+
 void ClapTrap::attack(const std::string& target)
 {
 	if (hit_points == 0)

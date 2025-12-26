@@ -1,11 +1,11 @@
-# include  "ScavTrap.hpp"
+# include  "FragTrap.hpp"
 
 
 int	main(void)
 {
 	ClapTrap	c1("first guard");
 	ClapTrap	c2("Second guard");
-	ScavTrap    stg("special guard");
+	FragTrap    stg("FragTrap powerful guard");
 
 	c1.attack("special gard");
 	stg.takeDammage(10);
@@ -17,5 +17,6 @@ int	main(void)
 	c2.takeDammage(10);
 	c1.beRepaired(10);
 	c2.beRepaired(10);
-	stg.guardGate();
+	stg.beRepaired(20);
+	stg.highFivesGuys();
 }

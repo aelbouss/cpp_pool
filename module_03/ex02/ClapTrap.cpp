@@ -5,7 +5,7 @@ ClapTrap::ClapTrap(std::string name) : Name(name)
 {
 	hit_points = 10;
 	Energy_points = 10;
-	Attack_dammage = 0;
+	Attack_damage = 0;
 	std::cout << BLUE << "Constructor Called"<< RESET << std::endl;
 }
 
@@ -13,7 +13,7 @@ void ClapTrap::attack(const std::string& target)
 {
 	if (hit_points == 0)
 	{
-		std::cout << this-> Name << RED << "is dead" << RESET << std::endl;
+		std::cout << this-> Name << RED << " is dead" << RESET << std::endl;
 		return;
 	}
 	if (Energy_points == 0)
@@ -25,6 +25,27 @@ void ClapTrap::attack(const std::string& target)
 		<< hit_points << " Points of damage" << RESET<< std::endl;
 	this->Energy_points--;
 }
+
+ClapTrap&	ClapTrap::operator = (const ClapTrap& src)
+{
+	if (this == &src)
+		return (*this);
+	this->Name = src.Name;
+	this->hit_points = src.hit_points;
+	this->Energy_points = src.Energy_points;
+	this->Attack_damage = src.Attack_damage;
+	return (*this);
+}
+
+ClapTrap::ClapTrap(const ClapTrap& src)
+{
+	this->Name = src.Name;
+	this->hit_points = src.hit_points;
+	this->Energy_points = src.Energy_points;
+	this->Attack_damage = src.Attack_damage;
+	std::cout << BLUE << "copy Constructor Called"<< RESET << std::endl;
+}
+
 
 ClapTrap::~ClapTrap()
 {

@@ -16,7 +16,7 @@ ScavTrap&	ScavTrap::operator = (const ScavTrap& src)
 {
 	if (this == &src)
 		return (*this);
-	this->Name = src.Name;
+	ClapTrap::operator=(src);
 	return (*this);
 }
 
@@ -24,7 +24,7 @@ void	ScavTrap::attack(const std::string& target)
 {
 	if (hit_points == 0)
 	{
-		std::cout << this->Name << RED << "is dead" << RESET << std::endl;
+		std::cout << this->Name << RED << " is dead" << RESET << std::endl;
 		return;
 	}
 	if (Energy_points == 0)

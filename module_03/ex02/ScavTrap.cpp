@@ -12,7 +12,6 @@ ScavTrap&	ScavTrap::operator = (const ScavTrap& src)
 	if (this == &src)
 		return (*this);
 	ClapTrap::operator= (src);
-	this->Name = src.Name;
 	return (*this);
 }
 
@@ -39,7 +38,6 @@ void	ScavTrap::attack(const std::string& target)
 	this->Energy_points--;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& src) : ClapTrap(src.Name) {}
 
 void	ScavTrap::guardGate()
 {
