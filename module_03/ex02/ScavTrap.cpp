@@ -4,20 +4,21 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	hit_points = 100;
 	Energy_points = 50;
-	Attack_damage = 20;
+	Attack_dammage = 20;
 	std::cout << BLUE << "ClavTrap Constructor Called " << RESET << std::endl;
+}
+ScavTrap&	ScavTrap::operator = (const ScavTrap& src) 
+{
+	if (this == &src)
+		return (*this);
+	ClapTrap::operator= (src);
+	this->Name = src.Name;
+	return (*this);
 }
 
 ScavTrap::ScavTrap(const ScavTrap& src) : ClapTrap(src)
 {
-	std::cout << "ScavTrap copy constructor called" << std::endl;
-}
-ScavTrap&	ScavTrap::operator = (const ScavTrap& src)
-{
-	if (this == &src)
-		return (*this);
-	this->Name = src.Name;
-	return (*this);
+	std::cout << "ScavTrap Copy Constructor Called" << std::endl;
 }
 
 void	ScavTrap::attack(const std::string& target)
