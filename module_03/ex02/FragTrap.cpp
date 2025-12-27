@@ -1,11 +1,20 @@
 # include "FragTrap.hpp"
 
+FragTrap::FragTrap()
+{
+	Name = "Nothing";
+	hit_points = 0;
+	Energy_points = 0;
+	Attack_damage = 0;
+	std::cout << BLUE << "FragTrap's Default constructor called " << RESET << std::endl;
+}
+
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	hit_points = 100;
 	Energy_points = 100;
 	Attack_damage = 30;
-	std::cout << BLUE << "FragTrap constructor  called " << RESET << std::endl;
+	std::cout << BLUE << "FragTrap's constructor called " << RESET << std::endl;
 }
 
 FragTrap&	FragTrap::operator = (const FragTrap& src)
@@ -28,7 +37,7 @@ void	FragTrap::attack(const std::string& target)
 		std::cout << RED << "0 Energy Points"<< RESET << std::endl;
 		return ;
 	}
-	std::cout<< YELLOW << "FragTrap's over  power is  coming ... "<< RESET << std::endl;
+	std::cout<< YELLOW << "FragTrap's over power is coming ... "<< RESET << std::endl;
 	std::cout << RED << "FragTrap "<< YELLOW << this->Name << RED << " attacks "<< YELLOW << target << RED << " , causing "
 		<< hit_points << " Points of damage HHHHHH" << RESET<< std::endl;
 	this->Energy_points--;
@@ -37,14 +46,15 @@ void	FragTrap::attack(const std::string& target)
 FragTrap::FragTrap(const FragTrap& src) :ClapTrap(src)
 {
 	std::cout << "Copy Constructor of FragTrap Called" << std::endl;
+	*this = src;
 }
 
 void	FragTrap::highFivesGuys(void)
 {
-	std::cout << GREEN << "FragTrap : High Fives" << RESET << std::endl;
+	std::cout << GREEN << "High Fives" << RESET << std::endl;
 }
 
 FragTrap::~FragTrap()
 {
-	std::cout << BLUE << "FragTrap Destructor Called"<< RESET << std::endl;
+	std::cout << BLUE << "FragTrap's Destructor Called"<< RESET << std::endl;
 }

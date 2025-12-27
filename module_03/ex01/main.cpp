@@ -18,4 +18,7 @@ int	main(void)
 	c1.beRepaired(10);
 	c2.beRepaired(10);
 	stg.guardGate();
+	// ClapTrap * ptr = new ScavTrap("anass");
+	// delete ptr;
+	return (0);
 }

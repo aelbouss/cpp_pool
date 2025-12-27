@@ -12,5 +12,5 @@ int	main(void)
 	c1.takeDammage(10);
 	c1.beRepaired(4);
 	c2.beRepaired(5);
-
+	return (0);
 }

@@ -1,12 +1,34 @@
 # include "ClapTrap.hpp"
 
 
-ClapTrap::ClapTrap(std::string name) : Name(name) 
+ClapTrap::ClapTrap(): Name("Nothing"),  hit_points(0) , Energy_points(0) , Attack_damage(0) 
 {
-	hit_points = 10;
-	Energy_points = 10;
-	Attack_damage = 0;
-	std::cout << BLUE << "Constructor Called"<< RESET << std::endl;
+	std::cout << BLUE << "Default ClapTrap Constructor Called"<< RESET << std::endl;
+}
+
+ClapTrap::ClapTrap(std::string name) : Name(name) ,hit_points(10) ,Energy_points(10) , Attack_damage(0)
+{
+	std::cout << BLUE << "ClapTrap's Parameterized Constructor Called"<< RESET << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap& src)
+{
+	this->Name = src.Name;
+	this->hit_points = src.hit_points;
+	this->Energy_points = src.Energy_points;
+	this->Attack_damage = src.Attack_damage;
+	std::cout << BLUE << "copy Constructor Called"<< RESET << std::endl;
+}
+
+ClapTrap&	ClapTrap::operator = (const ClapTrap& src)
+{
+	if (this == &src)
+		return (*this);
+	this->Name = src.Name;
+	this->hit_points = src.hit_points;
+	this->Energy_points = src.Energy_points;
+	this->Attack_damage = src.Attack_damage;
+	return (*this);
 }
 
 void ClapTrap::attack(const std::string& target)
@@ -26,36 +48,20 @@ void ClapTrap::attack(const std::string& target)
 	this->Energy_points--;
 }
 
-ClapTrap&	ClapTrap::operator = (const ClapTrap& src)
-{
-	if (this == &src)
-		return (*this);
-	this->Name = src.Name;
-	this->hit_points = src.hit_points;
-	this->Energy_points = src.Energy_points;
-	this->Attack_damage = src.Attack_damage;
-	return (*this);
-}
-
-ClapTrap::ClapTrap(const ClapTrap& src)
-{
-	this->Name = src.Name;
-	this->hit_points = src.hit_points;
-	this->Energy_points = src.Energy_points;
-	this->Attack_damage = src.Attack_damage;
-	std::cout << BLUE << "copy Constructor Called"<< RESET << std::endl;
-}
-
-
 ClapTrap::~ClapTrap()
 {
-	std::cout << BLUE << "ClapTrap Destructor Called" << BLUE << std::endl;
+	std::cout << BLUE << "ClapTrap's Destructor Called" << BLUE << std::endl;
 }
 
 void	ClapTrap::takeDammage(unsigned int amount)
 {
-	std::cout << YELLOW << this->Name << RED << " get damaged by : " << amount << " Damage Points" <<  RESET << std::endl;
-	if (amount > (unsigned int)this->hit_points)
+	if (this->hit_points == 0)
+	{
+		std::cout << RED << Name << " is dead" << RESET << std::endl;
+		return ; 
+	}
+	std::cout << YELLOW << this->Name << RED << " get damaged by : "<< YELLOW << amount << RED << " Damage Points" <<  RESET << std::endl;
+	if (amount >= (unsigned int)this->hit_points)
 	{
 		this->hit_points = 0;
 		return ;
@@ -71,8 +77,11 @@ void ClapTrap::beRepaired(unsigned int amount)
 		return ;
 	}
 	if (Energy_points == 0)
+	{
+		std::cout << RED << "0 Energy Points"<< RESET << std::endl;
 		return ;
+	}
 	hit_points += amount;
 	std::cout << GREEN << this->Name << " get repairs itself by : " << amount << std::endl;
-	this->Energy_points--; 
+	this->Energy_points--;
 }

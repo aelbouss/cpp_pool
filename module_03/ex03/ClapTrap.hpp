@@ -11,14 +11,14 @@ class	ClapTrap
 		int	Energy_points;
 		int Attack_damage;
 	public:
-		
+		ClapTrap();
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap& src);
 		ClapTrap&	operator = (const ClapTrap& src);
 		void	attack(const std::string& target);
 		void	takeDammage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
-		~ClapTrap();
+		virtual ~ClapTrap();
 };
 
 # define RESET "\033[0m"
