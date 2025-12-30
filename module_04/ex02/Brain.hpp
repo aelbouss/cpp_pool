@@ -1,0 +1,20 @@
+# ifndef BRAIN_HPP
+# define BRAIN_HPP
+
+# include "AAnimal.hpp"
+# include "Animal.hpp"
+# include "Cat.hpp"
+# include "Dog.hpp"
+
+class	Brain
+{
+	public :
+		std::string	ideas[100];
+		Brain();
+		Brain(const Brain& src);
+		void	fill_ideas();
+		Brain&	operator = (const Brain& src);
+		~Brain();
+};
+
+# endif
