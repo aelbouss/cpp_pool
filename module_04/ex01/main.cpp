@@ -27,11 +27,11 @@ int main()
 
 	{
 		std::cout << GREEN <<"===== Deep Copy Test ====="<< RESET << std::endl;
-		Dog	*dog1  = new Dog();
-		Dog *dog2 = new Dog(*dog1);
-		delete dog1;
-		dog2->get_dog_ideas();
-		delete dog2;
+		Cat	*cat1  = new Cat();
+		Cat *cat2 = new Cat(*cat1);
+		delete cat1;
+		cat2->get_cat_ideas();
+		delete cat2;
 	}
 
 
