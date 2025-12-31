@@ -1,13 +1,19 @@
 # ifndef CURE_HPP
 # define CURE_HPP
 
-class   cure
+# include  "ICharacter.hpp"
+# include  "AMateria.hpp"
+
+class   Cure : public  AMateria
 {
     public:
-        cure();
-        cure(const cure& src);
-        cure& operator = (const cure& src);
-        ~cure();
+        Cure();
+        Cure(const Cure& src);
+        Cure& operator = (const Cure& src);
+        ~Cure();
+        Cure    *clone() const;
+        void    use(ICharacter& target);
+
 };
 
 # endif

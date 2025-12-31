@@ -1,14 +1,33 @@
-# ifndef ICE_HPP
-# define ICE_HPP
+# include  "Ice.hpp"
 
-class   ice
+
+Ice::Ice()
 {
-    ice();
-    ice(const ice& src);
-    ice& operator = (const ice& src);
-    ~ice();
+    type = "ice";
+}
 
-};
+ Ice::Ice(const Ice& src)
+ {
+    this->type = src.type;
+ }
 
+ Ice& Ice::operator = (const Ice& src)
+ {
+    if (this == &src)
+        return (*this);
+    this->type = src.type;
+    return (*this);
+ }
 
-# endif
+ Ice *Ice::clone() const
+ {
+    Ice *p = new Ice();
+    return (p);
+ }
+
+ void   Ice::use(ICharacter & target)
+ {
+    std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+ }
+
+ Ice::~Ice() { }

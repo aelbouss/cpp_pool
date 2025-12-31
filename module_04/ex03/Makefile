@@ -2,11 +2,11 @@ CPPC = c++
 CPPFLAGS = -Wall -Werror -Wextra -g
 STD = -std=c++98
 
-SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRCS = AMateria.cpp Character.cpp Cure.cpp Ice.cpp main.cpp MateriaSource.cpp
 OBJS = $(SRCS:%.cpp=%.o)
-HEADERS = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
+HEADERS = AMateria.hpp Character.hpp Ice.hpp Cure.hpp IMateriaSource.hpp ICharacter.hpp  MateriaSource.hpp 
 
-TARGET = interface
+TARGET = Role_Playing_Game
 all : $(TARGET)
 
 $(TARGET): $(OBJS)
