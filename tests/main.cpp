@@ -1,23 +1,27 @@
 #include <iostream>
 #include <string>
 
+
+class	base_one
+{
+	public:
+		virtual void print() = 0;
+};
+
+class	derived : public base_one
+{
+	public :
+		virtual	void	print()
+		{
+			std::cout  << "hello  im  the  derived" << std::endl;
+		}
+};
+
 int	main(void)
 {
-	std::string str;
-	std::string substr;
-	std::string newstr;
-	size_t	pos;
-	
-	str = "the winners 2005 winners per la winners vita";
-	substr = "winners";
-	newstr = "leet boys";
-	pos = 0;
-	while ((pos = str.find(substr, pos)) !=  std::string::npos)
-	{
-		str.erase(pos, substr.length());
-		str.insert(pos, newstr);
-		pos++;
-	}
-	std::cout << str; 
+	derived obj;
+
+	obj.print();
+
 	return (0);
 }

@@ -4,22 +4,24 @@ MateriaSource::MateriaSource()
 {
     for (int i = 0 ; i < 4 ; i++)
         inventory[i] = NULL;
-    std::cout << "MateriaSource Default Constructor Called" << std::endl;
 }
 
 MateriaSource::MateriaSource(const MateriaSource& src)
 {
     for(int i = 0 ; i < 4 ; i++)
-        this->inventory[i] = src.inventory[i]->clone();
-    std::cout << "MateriaSource Copy Constructor Called" << std::endl; 
+    {
+        if ( this->inventory[i] != NULL)
+            this->inventory[i] = src.inventory[i]->clone();
+        else
+            this->inventory[i] = NULL;
+    }
 }
 
 
 MateriaSource& MateriaSource::operator = (const MateriaSource& src)
 {
     if (this == &src)
-        return (*this);
-    std::cout << "MateriaSource Copy Assignment Called" << std::endl;     
+        return (*this);     
     for (int i = 0 ; i < 4 ; i++)
     {
         if (this->inventory[i] != NULL)
@@ -29,7 +31,12 @@ MateriaSource& MateriaSource::operator = (const MateriaSource& src)
         }
     }
     for (int i = 0 ; i < 4 ; i++)
-        this->inventory[i] = src.inventory[i]->clone();
+    {
+        if (src.inventory[i] != NULL)
+            this->inventory[i] = src.inventory[i]->clone();
+        else
+            this->inventory[i] = NULL;
+    }
     return (*this);
 }
 
@@ -64,8 +71,10 @@ MateriaSource::~MateriaSource()
 {
     for (int i = 0 ; i < 4 ; i++)
     {
-        delete inventory[i] ;
-        inventory[i] = NULL;
+        if (inventory[i] != NULL)
+        {
+            delete inventory[i];
+            inventory[i] = NULL;
+        }
     }
-    std::cout  << "MateriaSource Destructor Called" << std::endl;
 }

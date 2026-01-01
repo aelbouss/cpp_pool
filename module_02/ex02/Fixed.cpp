@@ -1,14 +1,12 @@
 # include  "Fixed.hpp"
 
-Fixed::Fixed() // default constructor
-{
-	fixedpoint = 0;
-	  
-} 
+const int	Fixed::scaling_factor = 8;
+
+Fixed::Fixed() { fixedpoint = 0; } // default constructor
 
 Fixed::Fixed( const int nbr) // constructor builds int
 {
-	setRawBits(roundf(nbr * (1 << scaling_factor)));
+	setRawBits((nbr * (1 << scaling_factor)));
 }
 
 Fixed::Fixed( const float nbr) // constructor builds float
@@ -26,7 +24,7 @@ Fixed& Fixed::operator = ( const Fixed& src) // copy assignment  operator
 
 Fixed::Fixed( const Fixed& src) // copy constructor
 {
-	*this = src;
+	this->fixedpoint = src.getRawBits();
 }
 
 Fixed::~Fixed() // destructor
@@ -46,7 +44,7 @@ void Fixed::setRawBits( int const raw )
 
 float Fixed::toFloat( void ) const
 {
-	return (static_cast <float>(fixedpoint) / (1 << scaling_factor));
+	return ((float)(this->getRawBits()) / (float)(1 << scaling_factor));
 }
 
 int	Fixed::toInt( void ) const
@@ -62,28 +60,34 @@ std::ostream&	operator << ( std::ostream& os , const Fixed &src)
 
 Fixed	Fixed::operator + (const Fixed& src) const
 {
-	return (this->toFloat() + src.toFloat());
+	Fixed	res;
+
+	res.setRawBits(this->getRawBits() + src.getRawBits());
+	return (res);
 }
 
 Fixed	Fixed::operator - (const Fixed& src) const
 {
-	return (this->toFloat() - src.toFloat());
-}
+	Fixed	res;
 
+	res.setRawBits(this->getRawBits() - src.getRawBits());
+	return (res);
+}
 
 Fixed	Fixed::operator * (const Fixed& src) const
 {
-	float fv;
-	float sv;
+	Fixed	res;
 
-	fv = this->toFloat();
-	sv = src.toFloat();
- 	return (fv * sv);
+	res.setRawBits((this->getRawBits() * src.getRawBits()) / (1 << scaling_factor));
+	return (res);
 }
 
 Fixed	Fixed::operator / (const Fixed& src) const
 {
-	return (this->fixedpoint / src.getRawBits());
+	Fixed	res;
+
+	res.setRawBits(this->getRawBits() * (1 << scaling_factor) / src.getRawBits());
+	return (res);
 } 
 
 bool	Fixed::operator < (const Fixed& src) const
@@ -116,23 +120,22 @@ bool	Fixed::operator <= (const Fixed& src) const
 	return (this->getRawBits() <= src.getRawBits());
 }
 
-
 Fixed	Fixed::operator ++ (int) // postfix increment
 {
 	Fixed	obj(*this);
-	fixedpoint++;
+	this->fixedpoint++;
 	return (obj);
 }
 
 Fixed	Fixed::operator ++() // prefexi incement
 {
-	fixedpoint++;
+	this->fixedpoint++;
 	return (*this);
 }
 
 Fixed	Fixed::operator --(int) // postfix decrement
 {
-	fixedpoint--;
+	this->fixedpoint--;
 	return (*this);
 }
 
@@ -140,34 +143,34 @@ Fixed	Fixed::operator --() // prefix  decrement
 {
 	Fixed	obj(fixedpoint);
 
-	fixedpoint--;
+	this->fixedpoint--;
 	return (obj);
 }
 
 Fixed&	Fixed::min(Fixed& first, Fixed& second)
 {
-	if (first < second)
+	if (first.getRawBits() < second.getRawBits())
 		return (first);
 	return (second);
 }
 
 const Fixed&	Fixed::min(const Fixed& first, const Fixed& second)
 {
-	if (first < second)
+	if (first.getRawBits() < second.getRawBits())
 		return (first);
 	return (second);
 }
 
 Fixed&	Fixed::max(Fixed& first, Fixed& second)
 {
-	if (first > second)
+	if (first.getRawBits() > second.getRawBits())
 		return (first);
 	return (second);
 }
 
 const Fixed&	Fixed::max(const Fixed& first, const Fixed& second)
 {
-	if (first > second)
+	if (first.getRawBits() > second.getRawBits())
 		return (first);
 	return (second);
 }

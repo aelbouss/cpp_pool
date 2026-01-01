@@ -13,15 +13,11 @@ AMateria&   AMateria::operator= (const AMateria& src)
     return (*this);
 }
 
-std::string const & AMateria:: getType() const
-{
-     return (type);
-}
+std::string const & AMateria:: getType() const { return (type); }
 
 AMateria::~AMateria() {}
 
 void    AMateria::use(ICharacter& target)
 {
     (void) target;
-    std::cout << "AMateria's use here is a target " << std::endl;
 }

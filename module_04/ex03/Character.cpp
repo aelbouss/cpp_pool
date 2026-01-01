@@ -14,19 +14,32 @@ Character&  Character::operator = (const Character& src)
         return (*this);
     for (int i = 0; i < 4 ; i++)
     {
-        delete this->spells_book[i];
-        this->spells_book[i] = NULL;
+        if (this->spells_book[i] != NULL)
+        {
+            delete this->spells_book[i];
+            this->spells_book[i] = NULL;
+        }
     }
     this->name = src.getName();
-     for(int i = 0; i < 4 ; i++)
-        this->spells_book[i] =  src.spells_book[i]->clone();
+    for(int i = 0; i < 4 ; i++)
+    {
+        if (src.spells_book[i] != NULL)
+            this->spells_book[i] =  src.spells_book[i]->clone();
+        else
+             this->spells_book[i] = NULL;
+    }
     return (*this);
 }
 
 Character::Character(const Character& src)
 {
     for(int i = 0; i < 4 ; i++)
-        this->spells_book[i] =  src.spells_book[i]->clone();
+    {
+        if (src.spells_book[i] != NULL)
+            this->spells_book[i] =  src.spells_book[i]->clone();
+        else
+             this->spells_book[i] = NULL;
+    }
 }
 
 
@@ -38,7 +51,10 @@ void    Character::equip(AMateria  *materia)
     for(int i = 0 ; i < 4 ; i++)
     {
         if (spells_book[i] == NULL)
+        {
             spells_book[i] = materia;
+            return ;
+        }
     }
 }
 
@@ -66,12 +82,12 @@ void   Character::use(int idx, ICharacter& target)
 
 Character:: ~Character()
 {
-    // for(int i = 0 ; i < 4 ; i++)
-    // {
-        // if (spells_book[i] != NULL)
-        // {
-            // delete spells_book[i];
-            // spells_book[i] = NULL;
-        // }
-    // }
+    for(int i = 0 ; i < 4 ; i++)
+    {
+        if (spells_book[i] != NULL)
+        {
+            delete spells_book[i];
+            spells_book[i] = NULL;
+        }
+    }
 }

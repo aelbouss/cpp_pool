@@ -30,4 +30,4 @@ Ice::Ice()
     std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
  }
 
- Ice::~Ice() { }
+ Ice::~Ice() {}

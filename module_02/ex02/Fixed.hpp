@@ -10,7 +10,7 @@ class	Fixed
 {
 	private:
 		int	fixedpoint; // raw bits 
-		static const int	scaling_factor = 8;
+		static const int	scaling_factor;
 	public:
 		Fixed(); // constructor
 		Fixed( const int nbr); // converts the int entred  to  fiexd  point
