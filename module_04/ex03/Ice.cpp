@@ -6,7 +6,7 @@ Ice::Ice()
     type = "ice";
 }
 
- Ice::Ice(const Ice& src)
+ Ice::Ice(const Ice& src) :AMateria(src)
  {
     this->type = src.type;
  }

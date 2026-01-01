@@ -6,7 +6,7 @@ Cure::Cure()
     this->type = "cure";
 }
 
-Cure::Cure(const Cure& src)
+Cure::Cure(const Cure& src) :AMateria(src)
 {
     this->type = src.getType();
 }
