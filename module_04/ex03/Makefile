@@ -1,5 +1,5 @@
 CPPC = c++
-CPPFLAGS = -Wall -Werror -Wextra -g
+CPPFLAGS = -Wall -Werror -Wextra
 STD = -std=c++98
 
 SRCS = AMateria.cpp Character.cpp Cure.cpp Ice.cpp main.cpp MateriaSource.cpp

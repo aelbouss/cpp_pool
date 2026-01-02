@@ -17,7 +17,6 @@ MateriaSource::MateriaSource(const MateriaSource& src)
     }
 }
 
-
 MateriaSource& MateriaSource::operator = (const MateriaSource& src)
 {
     if (this == &src)

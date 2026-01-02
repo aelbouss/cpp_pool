@@ -13,6 +13,7 @@ Brain::Brain(const Brain& src)
 	}
 	std::cout << "Brain's Copy Constructor Called" << std::endl;
 }
+
 Brain&	Brain::operator = (const Brain& src)
 {
 	if (this == &src)

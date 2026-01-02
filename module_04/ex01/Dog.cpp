@@ -3,7 +3,7 @@
 Dog::Dog() : Animal("Dog")
 {
 	brain = new Brain();
-	for(int i = 0 ; i <  100 ; i++)
+	for(int i = 0 ; i < 100 ; i++)
 	{
 		this->brain->ideas[i] = "Dog Ideas";
 	}
@@ -39,7 +39,7 @@ void	Dog::get_dog_ideas()
 
 void	Dog::makeSound() const
 {
-	std::cout << "Dog : Barks" << std::endl;
+	std::cout << "Dog : Bark" << std::endl;
 }
 
 Dog::~Dog()

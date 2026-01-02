@@ -11,7 +11,7 @@ int main()
 {
 	Dog dog;
 	Cat cat;
-	// Animal animal; cannot  be  instantiated 
+	// AAnimal animal; cannot  be  instantiated 
 	AAnimal	*animal;
 	animal = &dog;
 	std::cout  << GREEN <<"this is a :" << animal->getType() << RESET << std::endl;
@@ -20,4 +20,4 @@ int main()
 	std::cout << RED << "this is a :" << animal->getType() << RESET << std::endl;
 	animal->makeSound();
 	return 0;
-} 
+}

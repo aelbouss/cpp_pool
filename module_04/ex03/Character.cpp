@@ -62,7 +62,7 @@ void    Character::unequip(int idx)
 {
     if (idx < 0 || idx > 3)
     {
-        std::cerr << "invalid index to unequipe " << std::endl;
+        std::cerr << RED << "invalid index to unequipe " << RESET << std::endl;
         return ;
     }
     if (spells_book[idx] != NULL)

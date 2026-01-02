@@ -15,6 +15,7 @@ Cat&	Cat::operator = (const Cat& src)
 	if (this == &src)
 		return (*this);
 	std::cout << "Cat's Copy Assignemnt operator Called" << std::endl;
+	
 	this->type = src.getType();
 	delete this->brain;
 	this->brain = new Brain();
@@ -31,7 +32,7 @@ Cat::Cat(const Cat& src) :Animal(src)
 
 void	Cat::makeSound() const
 {
-	std::cout << "Cat's : meows" << std::endl;
+	std::cout << "Cat : meow" << std::endl;
 }
 
 void	Cat::get_cat_ideas()
