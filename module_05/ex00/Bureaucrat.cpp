@@ -47,6 +47,6 @@ void	Bureaucrat::decrement(void)
 
 std::ostream&	operator << (std::ostream& os, const Bureaucrat& b)
 {
-	os << GREEN << b.name << " , bureaucrat grade " << b.grade << RESET;
+	os << GREEN << b.name << " , bureaucrat grade " << b.grade << RESET << std::endl;
 	return os; 
 }

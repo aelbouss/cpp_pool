@@ -11,7 +11,7 @@ class	GradeTooHighException :public std::exception
 	public:
 		GradeTooHighException(int grade);
 		virtual ~GradeTooHighException() throw();
-		std::string	what();
+		const char* what() const throw();
 };
 
 # endif

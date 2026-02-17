@@ -2,9 +2,10 @@
 
 GradeTooLowException::GradeTooLowException(int Grade) :grade(Grade){}
 
-std::string	GradeTooLowException::what()
+const char*	GradeTooLowException::what() const throw()
 {
-	return "The grade Is Too Low" ;
+	std::cerr << "The Grade : "<< grade;
+	return (" Is Too Low");
 }
 
 GradeTooLowException::~GradeTooLowException() throw() {}

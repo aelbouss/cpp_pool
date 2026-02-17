@@ -2,9 +2,10 @@
 
 GradeTooHighException::GradeTooHighException(int Grade) :grade(Grade){}
 
-std::string GradeTooHighException::what()
+const char*	GradeTooHighException::what()  const throw()
 {
-	return ("The Grade Is Too High");
+	std::cerr << "The Grade : "<< grade ;
+	return (" Is Too High");
 }
 
 GradeTooHighException::~GradeTooHighException() throw() {}

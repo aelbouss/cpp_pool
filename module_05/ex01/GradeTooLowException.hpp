@@ -10,7 +10,7 @@ class GradeTooLowException
 	public:
 		GradeTooLowException(int Grade);
 		virtual ~GradeTooLowException() throw();
-		std::string	what();
+		const char* what() const throw();
 };
 
 
