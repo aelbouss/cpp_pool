@@ -8,15 +8,17 @@ int	main(void)
 {
 	try
 	{
-		Bureaucrat b1(5, "Anass");
+		Bureaucrat b1(137, "Anass");
 		ShrubberyCreationForm f1("Home");
 		RobotomyRequestForm f2("random_target");
 		PresidentialPardonForm f3("bad_person");
 		b1.signForm(f1, b1);
-		b1.signForm(f2, b1);
-		b1.signForm(f3, b1);
 		b1.executeForm(f1);
+
+		b1.signForm(f2, b1);
 		b1.executeForm(f2);
+		
+		b1.signForm(f3, b1);
 		b1.executeForm(f3);
 	}
 	catch(GradeTooHighException& e)

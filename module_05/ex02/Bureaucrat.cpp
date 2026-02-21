@@ -56,15 +56,17 @@ void	Bureaucrat::signForm(AForm& f, Bureaucrat& b)
 	f.beSigned(b);
 	if (f.get_form_status())
 	{
-		std::cout << "bureaucrat signed form" << std::endl;
+		std::cout << GREEN <<"bureaucrat " << b.getName()<< " signed the form :"<< RESET << std::endl;
+		std::cout << f ;
 		return ;
 	}
 	else
-		std::cout << getName() << " Couldn't Sign " << f.get_name() << " beacause : ";
+		std::cout << RED << getName() << " Couldn't Sign " <<f.get_name() << " beacause : ";
 	if (grade < f.get_sign_grade())
 		throw GradeTooHighException(grade);
 	else
 		throw GradeTooLowException(grade);
+	RESET ;
 }
 
 void	Bureaucrat::
@@ -72,5 +74,5 @@ executeForm(AForm const & form) const
 {
 	form.execute(*this);
 	form.perform_task();
-	std::cout << this->name << " executed " << form.get_name() << std::endl;
+	std::cout << BLUE << this->name << " executed " << form.get_name() << RESET << std::endl;
 }

@@ -13,7 +13,7 @@ int	main(void)
 		AForm	*form;
 		Intern	Factory;
 
-		form = Factory.makeForm("rf", "Home");
+		form = Factory.makeForm("ShrubberyCreationForm", "Home");
 		if (!form)
 		{
 			std::cout << "the inventory doens't make this form" << std::endl;
@@ -33,7 +33,7 @@ int	main(void)
 	}
 	catch(...)
 	{
-		std::cerr << "exception caught : something went wrong" << std::endl;
+		std::cerr << RED << "exception caught : invalid Form" << RESET << std::endl;
 	}
 	return (0);
 }

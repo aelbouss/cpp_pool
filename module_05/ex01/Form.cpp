@@ -41,8 +41,8 @@ std::string	Form::get_name(void) const
 
 std::ostream&	operator << (std::ostream& os , const Form& f)
 {
-	os << "Name : " << f.get_name( ) << "grade signed : " << 
-		f.get_sign_grade() << "grade execute : " << f.get_execute_grade();
+	os << GREEN << "Name : " << f.get_name( ) << " the sign grade : " << 
+		f.get_sign_grade() << " the execute grade : " << f.get_execute_grade() << RESET << std::endl;
 	return (os);
 }
 
