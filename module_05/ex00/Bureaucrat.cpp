@@ -31,22 +31,21 @@ std::string	Bureaucrat::getName(void) const { return (name); }
 
 int	 Bureaucrat::getGrade(void) const { return (grade); }
 
-
 void	Bureaucrat::increment(void)
 {
 	if ((grade - 1) <= 1)
-		return ;
-	grade -= grade;
+		throw GradeTooHighException(grade - 1);
+	grade -= 1;
 }
 void	Bureaucrat::decrement(void)
 {
 	if ((grade + 1) >= 150)
-		return ;
+		throw GradeTooLowException(grade + 1);
 	grade += 1;
 }
 
 std::ostream&	operator << (std::ostream& os, const Bureaucrat& b)
 {
-	os << GREEN << b.name << " , bureaucrat grade " << b.grade << RESET << std::endl;
+	os << GREEN << b.getName() << " , bureaucrat grade " << b.getGrade() << RESET << std::endl;
 	return os; 
 }

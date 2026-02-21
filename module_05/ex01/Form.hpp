@@ -8,10 +8,10 @@ class Bureaucrat;
 class	Form
 {
 	private:
-		std::string name;
+		const std::string name;
 		bool	is_signed;
-		int grade_s;
-		int grade_e;
+		const int grade_s;
+		const int grade_e;
 	public:
 		Form(std::string Name, const int Grade_sign, const int Grade_exec);
 		Form(const Form& src);
