@@ -28,19 +28,18 @@ void	ShrubberyCreationForm::perform_task(void) const
 	if (!outfile.is_open())
 		throw "Failed to open the shrubbery file";
 
-   outfile << "              *\n";
-   outfile << "             ***\n";
-   outfile << "            *****\n";
-   outfile << "           *******\n";
-   outfile << "          *********\n";
-   outfile << "         ***********\n";
-   outfile << "        *************\n";
-   outfile << "       ***************\n";
-   outfile << "      *****************\n";
-   outfile << "     *******************\n";
-   outfile << "    *********************\n";
-   outfile << "              ||\n";
-   outfile << "              ||\n";
+   outfile << "                   &&& &&  & &&\n";
+	outfile << "               && &\\/&\\|& ()|/ @, &&\n";
+	outfile << "              &\\/(/&/&||/& /_/)_&/_&\n";
+	outfile << "            &() &\\/&|()|/&\\/ '%\" & ()\n";
+	outfile << "            &_\\_&&_\\ |& |&&/&__%_/_& &&\n";
+	outfile << "            &&  && & &| &| /& & % ()& /&&\n";
+	outfile << "           ()&_---()&\\&\\|&&-&&--%---()~\n";
+	outfile << "               &&     \\||| \n";
+	outfile << "                        |||\n";
+	outfile << "                        |||\n";
+	outfile << "                        |||\n";
+	outfile << "                  , -=-~  .-^- _\n";
 
 	outfile.close();
 }
