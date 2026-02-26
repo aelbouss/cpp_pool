@@ -7,13 +7,12 @@ int	main(void)
 		try
 		{
 			Bureaucrat	b1(-1, "anass");
-			std::cout << b1;
 		}
-		catch(GradeTooHighException& e)
+		catch(Bureaucrat::GradeTooHighException& e)
 		{
 			std::cerr << RED <<"exception caught : " <<  e.what() << RESET << std::endl;
 		}
-		catch(GradeTooLowException& e)
+		catch(Bureaucrat::GradeTooLowException& e)
 		{
 			std::cerr << RED <<"exception caught : " <<  e.what() << RESET << std::endl;
 		}
@@ -23,13 +22,12 @@ int	main(void)
 		try
 		{
 			Bureaucrat	b1(160, "anass");
-			std::cout << b1;
 		}
-		catch(GradeTooHighException& e)
+		catch(Bureaucrat::GradeTooHighException& e)
 		{
 			std::cerr << RED <<"exception caught : " <<  e.what() << RESET << std::endl;
 		}
-		catch(GradeTooLowException& e)
+		catch(Bureaucrat::GradeTooLowException& e)
 		{
 			std::cerr << RED <<"exception caught : " <<  e.what() << RESET << std::endl;
 		}
@@ -38,17 +36,14 @@ int	main(void)
 	{
 		try
 		{
-			Bureaucrat	b1(1, "anass");
+			Bureaucrat	b1(120, "anass");
 			std::cout << b1;
-			b1.increment();
-			std::cout << "After decrement the grade" << std::endl;
-			std::cout  << b1;
 		}
-		catch(GradeTooHighException& e)
+		catch(Bureaucrat::GradeTooHighException& e)
 		{
 			std::cerr << RED <<"exception caught : " <<  e.what() << RESET << std::endl;
 		}
-		catch(GradeTooLowException& e)
+		catch(Bureaucrat::GradeTooLowException& e)
 		{
 			std::cerr << RED <<"exception caught : " <<  e.what() << RESET << std::endl;
 		}

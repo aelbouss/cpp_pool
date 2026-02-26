@@ -3,8 +3,6 @@
 
 # include  <iostream>
 # include <exception>
-# include "GradeTooHighException.hpp"
-# include "GradeTooLowException.hpp"
 
 class Bureaucrat
 {
@@ -21,8 +19,30 @@ class Bureaucrat
 		int	getGrade(void) const;
 		void	increment(void);
 		void	decrement(void);
-		friend	std::ostream&	operator << (std::ostream& os, const Bureaucrat& b);
+		
+		// exceptions nested classes
+		class	GradeTooHighException :public std::exception
+		{
+			private:
+				int	grade;
+			public:
+				GradeTooHighException(int grade);
+				virtual ~GradeTooHighException() throw();
+				std::string	what();
+		};
+
+		class GradeTooLowException :public std::exception
+		{
+			private:
+				int	grade;
+			public:
+				GradeTooLowException(int Grade);
+				virtual ~GradeTooLowException() throw();
+				std::string	what();
+		};
 };
+
+std::ostream&	operator << (std::ostream& os, const Bureaucrat& b);
 
 # define RED "\033[31m"
 # define GREEN "\033[32m"

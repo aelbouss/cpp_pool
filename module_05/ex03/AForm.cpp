@@ -58,8 +58,8 @@ std::string	AForm::get_name(void) const
 
 std::ostream&	operator << (std::ostream& os , const AForm& f)
 {
-	os << GREEN << "Name : " << f.get_name( ) << " grade signed : " << 
-		f.get_sign_grade() << " grade execute : " << f.get_execute_grade() << RESET << std::endl;
+	os << "Name : " << f.get_name( ) << "grade signed : " << 
+		f.get_sign_grade() << " grade execute : " << f.get_execute_grade() << std::endl;
 	return (os);
 }
 
@@ -87,3 +87,22 @@ bool	AForm::get_execution_status(void) const
 {
 	return (is_executed);
 }
+
+
+
+AForm::GradeTooHighException::GradeTooHighException(int Grade) :grade(Grade){}
+
+std::string AForm::GradeTooHighException::what()
+{
+	return ("Form's Grade Is Too High");
+}
+AForm::GradeTooHighException::~GradeTooHighException() throw() {}
+
+
+AForm::GradeTooLowException::GradeTooLowException(int Grade) :grade(Grade){}
+
+std::string	AForm::GradeTooLowException::what()
+{
+	return ("Form's Grade Is Too Low") ;
+}
+AForm::GradeTooLowException::~GradeTooLowException() throw() {}

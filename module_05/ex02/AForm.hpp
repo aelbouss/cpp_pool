@@ -29,6 +29,25 @@ class	AForm
 		void	execute(Bureaucrat const & executor) const;
 		virtual	void	perform_task(void) const = 0;
 
+			class	GradeTooHighException :public std::exception
+		{
+			private:
+				int	grade;
+			public:
+				GradeTooHighException(int grade);
+				virtual ~GradeTooHighException() throw();
+				std::string	what();
+		};
+
+		class GradeTooLowException
+		{
+			private:
+				int	grade;
+			public:
+				GradeTooLowException(int Grade);
+				virtual ~GradeTooLowException() throw();
+				std::string	what();
+		};
 };
 
 # endif

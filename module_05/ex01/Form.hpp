@@ -8,10 +8,10 @@ class Bureaucrat;
 class	Form
 {
 	private:
-		const std::string name;
+		std::string name;
 		bool	is_signed;
-		const int grade_s;
-		const int grade_e;
+		int grade_s;
+		int grade_e;
 	public:
 		Form(std::string Name, const int Grade_sign, const int Grade_exec);
 		Form(const Form& src);
@@ -23,7 +23,26 @@ class	Form
 		friend std::ostream&	operator << (std::ostream& os , const Form& f);
 		bool	get_form_status(void) const ;
 		void	beSigned(Bureaucrat& b);
-		
-};
 
+		class	GradeTooHighException :public std::exception
+		{
+			private:
+				int	grade;
+			public:
+				GradeTooHighException(int grade);
+				virtual ~GradeTooHighException() throw();
+				std::string	what();
+		};
+
+		class GradeTooLowException
+		{
+			private:
+				int	grade;
+			public:
+				GradeTooLowException(int Grade);
+				virtual ~GradeTooLowException() throw();
+				std::string	what();
+		};
+
+};
 # endif

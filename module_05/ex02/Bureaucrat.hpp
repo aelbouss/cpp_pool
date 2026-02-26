@@ -1,14 +1,11 @@
 # ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-# include <iostream>
-# include <fstream>
+# include  <iostream>
 # include <exception>
-# include <cstdlib>
-# include <ctime>
-# include "GradeTooHighException.hpp"
-# include "GradeTooLowException.hpp"
 # include "AForm.hpp"
+# include <cstdlib>
+# include <fstream>
 
 class AForm;
 
@@ -28,9 +25,30 @@ class Bureaucrat
 		void	increment(void);
 		void	decrement(void);
 		void	signForm(AForm& f, Bureaucrat& b);
-		friend	std::ostream&	operator << (std::ostream& os, const Bureaucrat& b);
 		void	executeForm(AForm const &form) const;
+		// exceptions nested classes
+		class	GradeTooHighException :public std::exception
+		{
+			private:
+				int	grade;
+			public:
+				GradeTooHighException(int grade);
+				virtual ~GradeTooHighException() throw();
+				std::string	what();
+		};
+
+		class GradeTooLowException
+		{
+			private:
+				int	grade;
+			public:
+				GradeTooLowException(int Grade);
+				virtual ~GradeTooLowException() throw();
+				std::string	what();
+		};
 };
+
+std::ostream&	operator << (std::ostream& os, const Bureaucrat& b);
 
 # define RED "\033[31m"
 # define GREEN "\033[32m"

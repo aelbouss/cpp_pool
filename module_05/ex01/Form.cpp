@@ -1,6 +1,6 @@
 # include "Form.hpp"
 
-Form::Form(std::string Name, int Grade_sign, int Grade_exec) :  name(Name) , grade_s(Grade_sign) , grade_e(Grade_exec)
+Form::Form(std::string Name, int Grade_sign, int Grade_exec)
 {
 	if (Grade_sign < 1)
 		throw GradeTooHighException(Grade_sign);
@@ -11,14 +11,26 @@ Form::Form(std::string Name, int Grade_sign, int Grade_exec) :  name(Name) , gra
 	if (Grade_exec > 150)
 		throw GradeTooLowException(Grade_exec);
 	is_signed = false;
+	name = Name;
+	grade_s = Grade_sign;
+	grade_e = Grade_exec;
 }
 
-Form::Form(const Form& src) :  name(src.name) , grade_s(src.grade_s) , grade_e(src.grade_e)
+Form::Form(const Form& src)
 {
+	this->name = src.name;
+	this->grade_e = src.grade_e;
+	this->grade_s = src.grade_s;
+	this->is_signed = src.is_signed;
 }
 Form&	Form::operator=(const Form& src)
 {
-	 this->is_signed = src.is_signed;
+	if (this == &src)
+		return (*this);
+	this->name = src.name;
+	this->grade_e = src.grade_e;
+	this->grade_s = src.grade_s;
+	this->is_signed = src.is_signed;
 	return (*this);
 }
 
@@ -41,8 +53,8 @@ std::string	Form::get_name(void) const
 
 std::ostream&	operator << (std::ostream& os , const Form& f)
 {
-	os << GREEN << "Name : " << f.get_name( ) << " the sign grade : " << 
-		f.get_sign_grade() << " the execute grade : " << f.get_execute_grade() << RESET << std::endl;
+	os << "Name : " << f.get_name( ) << "grade signed : " << 
+		f.get_sign_grade() << "grade execute : " << f.get_execute_grade();
 	return (os);
 }
 
@@ -58,3 +70,19 @@ bool	Form::get_form_status(void) const
 }
 
 
+Form::GradeTooHighException::GradeTooHighException(int Grade) :grade(Grade){}
+
+std::string Form::GradeTooHighException::what()
+{
+	return ("Form's Grade Is Too High");
+}
+Form::GradeTooHighException::~GradeTooHighException() throw() {}
+
+
+Form::GradeTooLowException::GradeTooLowException(int Grade) :grade(Grade){}
+
+std::string	Form::GradeTooLowException::what()
+{
+	return ("Form's Grade Is Too Low") ;
+}
+Form::GradeTooLowException::~GradeTooLowException() throw() {}

@@ -3,7 +3,7 @@
 Bureaucrat::Bureaucrat(int Grade, std::string Name)
 {
 	if (Grade > 150)
-		throw GradeTooLowException(Grade);
+		throw Bureaucrat::GradeTooLowException(Grade);
 	if (Grade < 1)
 		throw GradeTooHighException(Grade);
 	this->grade = Grade;
@@ -35,20 +35,14 @@ int	 Bureaucrat::getGrade(void) const { return (grade); }
 void	Bureaucrat::increment(void)
 {
 	if ((grade - 1) <= 1)
-		throw GradeTooHighException(grade - 1);
-	grade -= 1;
+		return ;
+	grade -= grade;
 }
 void	Bureaucrat::decrement(void)
 {
 	if ((grade + 1) >= 150)
-		throw GradeTooLowException(grade + 1);
+		return ;
 	grade += 1;
-}
-
-std::ostream&	operator << (std::ostream& os, const Bureaucrat& b)
-{
-	os << GREEN << b.name << " , bureaucrat grade " << b.grade << RESET;
-	return os; 
 }
 
 void	Bureaucrat::signForm(AForm& f, Bureaucrat& b)
@@ -61,18 +55,40 @@ void	Bureaucrat::signForm(AForm& f, Bureaucrat& b)
 		return ;
 	}
 	else
-		std::cout << RED << getName() << " Couldn't Sign " <<f.get_name() << " beacause : ";
+		std::cerr << RED << getName() << " Couldn't Sign " <<f.get_name() << " beacause : ";
 	if (grade < f.get_sign_grade())
-		throw GradeTooHighException(grade);
+		throw Bureaucrat::GradeTooHighException(grade);
 	else
-		throw GradeTooLowException(grade);
-	RESET ;
+		throw Bureaucrat::GradeTooLowException(grade);
+	//RESET ;
 }
 
-void	Bureaucrat::
-executeForm(AForm const & form) const
+std::ostream&	operator << (std::ostream& os, const Bureaucrat& b)
+{
+	os << GREEN << b.getName() << " , bureaucrat grade " << b.getGrade() << RESET;
+	return os; 
+}
+
+Bureaucrat::GradeTooHighException::GradeTooHighException(int Grade) :grade(Grade){}
+
+std::string Bureaucrat::GradeTooHighException::what()
+{
+	return ("Bureaucrat's Grade Is Too High");
+}
+Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {}
+
+
+Bureaucrat::GradeTooLowException::GradeTooLowException(int Grade) :grade(Grade){}
+
+std::string	Bureaucrat::GradeTooLowException::what()
+{
+	return ("Bureaucrat's Grade Is Too Low") ;
+}
+
+void	Bureaucrat::executeForm(AForm const & form) const
 {
 	form.execute(*this);
 	form.perform_task();
 	std::cout << BLUE << this->name << " executed " << form.get_name() << RESET << std::endl;
 }
+Bureaucrat::GradeTooLowException::~GradeTooLowException() throw() {}

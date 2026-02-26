@@ -13,7 +13,7 @@ int	main(void)
 		AForm	*form;
 		Intern	Factory;
 
-		form = Factory.makeForm("ShrubberyCreationForm", "Home");
+		form = Factory.makeForm("RobotomyRequestForm", "Home");
 		if (!form)
 		{
 			std::cout << "the inventory doens't make this form" << std::endl;
@@ -23,17 +23,21 @@ int	main(void)
 		b1.executeForm(*form);
 		delete (form);
 	}
-	catch(GradeTooHighException& e)
+	catch(Bureaucrat::GradeTooLowException& e)
 	{
 		std::cerr <<  e.what();
 	}
-	catch(GradeTooLowException& e)
+		catch(AForm::GradeTooHighException& e)
+	{
+		std::cerr <<  e.what();
+	}
+	catch(AForm::GradeTooLowException& e)
 	{
 		std::cerr <<  e.what();
 	}
 	catch(...)
 	{
-		std::cerr << RED << "exception caught : invalid Form" << RESET << std::endl;
+		std::cerr << "exception caught : something went wrong" << std::endl;
 	}
 	return (0);
 }
