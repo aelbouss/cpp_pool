@@ -45,9 +45,9 @@ void	Bureaucrat::decrement(void)
 	grade += 1;
 }
 
-void	Bureaucrat::signForm(Form& f, Bureaucrat& b)
+void	Bureaucrat::signForm(Form& f, Bureaucrat& b) // must be audited
 {
-	f.beSigned(b);
+	f.beSigned(*this);
 	if (f.get_form_status())
 	{
 		std::cout << GREEN <<"bureaucrat " << b.getName()<< " signed the form :"<< RESET << std::endl;

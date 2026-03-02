@@ -22,7 +22,6 @@ class	AForm
 		int		get_sign_grade(void) const;
 		int		get_execute_grade(void) const ;
 		std::string	get_name(void) const ;
-		friend std::ostream&	operator << (std::ostream& os , const AForm& f);
 		bool	get_form_status(void) const ;
 		bool	get_execution_status(void) const ;
 		void	beSigned(Bureaucrat& b);
@@ -49,5 +48,7 @@ class	AForm
 				std::string	what();
 		};
 };
+
+std::ostream&	operator << (std::ostream& os , const AForm& f);
 
 # endif

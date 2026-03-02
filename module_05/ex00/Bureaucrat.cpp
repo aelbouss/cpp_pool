@@ -53,17 +53,29 @@ std::ostream&	operator << (std::ostream& os, const Bureaucrat& b)
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(int Grade) :grade(Grade){}
 
-std::string Bureaucrat::GradeTooHighException::what()
+// std::string Bureaucrat::GradeTooHighException::what()
+// {
+// 	return ("Bureaucrat's Grade Is Too High");
+// }
+
+const char	*Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return ("Bureaucrat's Grade Is Too High");
 }
+
 Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {}
 
 
 Bureaucrat::GradeTooLowException::GradeTooLowException(int Grade) :grade(Grade){}
 
-std::string	Bureaucrat::GradeTooLowException::what()
+// std::string	Bureaucrat::GradeTooLowException::what()
+// {
+// 	return ("Bureaucrat's Grade Is Too Low") ;
+// }
+
+const char	*Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Bureaucrat's Grade Is Too Low") ;
+	return ("Bureaucrat's Grade Is Too Low");
 }
+
 Bureaucrat::GradeTooLowException::~GradeTooLowException() throw() {}
