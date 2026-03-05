@@ -28,7 +28,6 @@ class Bureaucrat
 			public:
 				GradeTooHighException(int grade);
 				virtual ~GradeTooHighException() throw();
-				//std::string	what();
 				virtual	const char *what() const throw();
 		};
 
@@ -39,7 +38,6 @@ class Bureaucrat
 			public:
 				GradeTooLowException(int Grade);
 				virtual ~GradeTooLowException() throw();
-				//std::string	what();
 				virtual	const char *what() const throw();
 		};
 };
@@ -48,6 +46,8 @@ std::ostream&	operator << (std::ostream& os, const Bureaucrat& b);
 
 # define RED "\033[31m"
 # define GREEN "\033[32m"
+# define BLUE "\e[0;34m"
+# define PURPLE "\e[0;35m"
 # define RESET "\033[0m"
 
 # endif

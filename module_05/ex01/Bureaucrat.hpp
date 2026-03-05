@@ -3,7 +3,7 @@
 
 # include  <iostream>
 # include <exception>
-# include "AForm.hpp"
+# include "Form.hpp"
 
 class Form;
 
@@ -22,7 +22,7 @@ class Bureaucrat
 		int	getGrade(void) const;
 		void	increment(void);
 		void	decrement(void);
-		void	signForm(Form& f, Bureaucrat& b);
+		void	signForm(Form& f);
 		// exceptions nested classes
 		class	GradeTooHighException :public std::exception
 		{
@@ -31,17 +31,17 @@ class Bureaucrat
 			public:
 				GradeTooHighException(int grade);
 				virtual ~GradeTooHighException() throw();
-				std::string	what();
+				const char	*what() const throw() ;
 		};
 
-		class GradeTooLowException
+		class GradeTooLowException :public std::exception
 		{
 			private:
 				int	grade;
 			public:
 				GradeTooLowException(int Grade);
 				virtual ~GradeTooLowException() throw();
-				std::string	what();
+				const char	*what() const throw() ;
 		};
 };
 
@@ -49,6 +49,7 @@ std::ostream&	operator << (std::ostream& os, const Bureaucrat& b);
 
 # define RED "\033[31m"
 # define GREEN "\033[32m"
+# define PURPLE "\e[0;35m"
 # define RESET "\033[0m"
 
 # endif

@@ -1,5 +1,11 @@
 # include "Bureaucrat.hpp"
 
+Bureaucrat::Bureaucrat() 
+{
+	this->grade = 0;
+	this->name = "nobody";
+}
+
 Bureaucrat::Bureaucrat(int Grade, std::string Name)
 {
 	if (Grade > 150)
@@ -35,32 +41,34 @@ int	 Bureaucrat::getGrade(void) const { return (grade); }
 void	Bureaucrat::increment(void)
 {
 	if ((grade - 1) <= 1)
-		return ;
-	grade -= grade;
+		throw Bureaucrat::GradeTooHighException(grade - 1);
+	std::cout << PURPLE <<"bureaucrat's value incremented" << RESET << std::endl;
+	grade -= 1;
 }
 void	Bureaucrat::decrement(void)
 {
 	if ((grade + 1) >= 150)
-		return ;
+		throw::Bureaucrat::GradeTooLowException(grade + 1);
+	std::cout << PURPLE <<"bureaucrat's value decremented" << RESET << std::endl;
 	grade += 1;
 }
 
-void	Bureaucrat::signForm(AForm& f, Bureaucrat& b)
+void	Bureaucrat::signForm(AForm& form)
 {
-	f.beSigned(b);
-	if (f.get_form_status())
+	try
 	{
-		std::cout << GREEN <<"bureaucrat " << b.getName()<< " signed the form :"<< RESET << std::endl;
-		std::cout << f ;
-		return ;
+		form.beSigned(*this);
+		if (form.get_form_status())
+		{
+			std::cout << GREEN <<"bureaucrat " << this->getName()<< " signed the form :"<< RESET << std::endl;
+			std::cout << form ;
+			return ;
+		}
 	}
-	else
-		std::cerr << RED << getName() << " Couldn't Sign " <<f.get_name() << " beacause : ";
-	if (grade < f.get_sign_grade())
-		throw Bureaucrat::GradeTooHighException(grade);
-	else
-		throw Bureaucrat::GradeTooLowException(grade);
-	//RESET ;
+	catch (const std::exception &e)
+	{
+		std::cerr << RED << e.what() << RESET << std::endl;
+	}
 }
 
 std::ostream&	operator << (std::ostream& os, const Bureaucrat& b)
@@ -71,7 +79,7 @@ std::ostream&	operator << (std::ostream& os, const Bureaucrat& b)
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(int Grade) :grade(Grade){}
 
-std::string Bureaucrat::GradeTooHighException::what()
+const char * Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return ("Bureaucrat's Grade Is Too High");
 }
@@ -80,7 +88,7 @@ Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {}
 
 Bureaucrat::GradeTooLowException::GradeTooLowException(int Grade) :grade(Grade){}
 
-std::string	Bureaucrat::GradeTooLowException::what()
+const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return ("Bureaucrat's Grade Is Too Low") ;
 }

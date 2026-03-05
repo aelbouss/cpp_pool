@@ -1,6 +1,12 @@
 # include "AForm.hpp"
 
-AForm::AForm() {}
+AForm::AForm()
+{
+	this->name = "NOform";
+	this->grade_e = 0 ;
+	this->grade_s = 0 ;
+	this->is_signed = false ;
+}
 
 AForm::AForm(std::string Name, int Grade_sign, int Grade_exec)
 {
@@ -67,6 +73,11 @@ void	AForm::beSigned(Bureaucrat& b)
 {
 	if (b.getGrade() <= grade_s)
 		is_signed = true;
+	else
+	{
+		std::cerr <<" Bureacucrat : "<< b.getName() << " couldn't sign : " << this->get_name() << "  because : " ;
+		throw AForm::GradeTooLowException(b.getGrade());
+	}
 }
 
 void	AForm::execute(Bureaucrat const & executor) const
@@ -88,11 +99,9 @@ bool	AForm::get_execution_status(void) const
 	return (is_executed);
 }
 
-
-
 AForm::GradeTooHighException::GradeTooHighException(int Grade) :grade(Grade){}
 
-std::string AForm::GradeTooHighException::what()
+const char * AForm::GradeTooHighException::what() const throw()
 {
 	return ("Form's Grade Is Too High");
 }
@@ -101,7 +110,7 @@ AForm::GradeTooHighException::~GradeTooHighException() throw() {}
 
 AForm::GradeTooLowException::GradeTooLowException(int Grade) :grade(Grade){}
 
-std::string	AForm::GradeTooLowException::what()
+const char *AForm::GradeTooLowException::what() const throw()
 {
 	return ("Form's Grade Is Too Low") ;
 }

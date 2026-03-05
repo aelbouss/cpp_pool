@@ -35,17 +35,17 @@ class	AForm
 			public:
 				GradeTooHighException(int grade);
 				virtual ~GradeTooHighException() throw();
-				std::string	what();
+				const char	*what() const throw() ;
 		};
 
-		class GradeTooLowException
+		class GradeTooLowException :public std::exception
 		{
 			private:
 				int	grade;
 			public:
 				GradeTooLowException(int Grade);
 				virtual ~GradeTooLowException() throw();
-				std::string	what();
+				const char	*what() const throw() ;
 		};
 };
 

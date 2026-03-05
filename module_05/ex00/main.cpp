@@ -29,7 +29,9 @@ int	main(void)
 		try
 		{
 			Bureaucrat	b1(120, "anass");
-			std::cout << b1;
+			std::cout << b1 << std::endl;
+			b1.increment();
+			std::cout << BLUE << "Bureaucrat's new grade is : " << b1.getGrade() << RESET << std::endl;
 		}
 		catch (const std::exception &e)
 		{

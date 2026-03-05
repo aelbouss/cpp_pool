@@ -6,48 +6,29 @@ int	main(void)
 	{
 		try
 		{
-			Bureaucrat b1(14 , "anass");
-			Form f1("F1-FF", 10 , 12);
+			Bureaucrat b1(11 , "anass");
+			std::cout << b1 <<std::endl;
 			b1.increment();
-			b1.signForm(f1, b1);
-		}
-		catch(Bureaucrat::GradeTooHighException& e)
-		{
-			std::cerr <<  e.what();
-		}
-		catch(Bureaucrat::GradeTooLowException& e)
-		{
-			std::cerr <<  e.what();
-		}
-			catch(Form::GradeTooHighException& e)
-		{
-			std::cerr <<  e.what();
-		}
-		catch(Form::GradeTooLowException& e)
-		{
-			std::cerr <<  e.what();
-		}
+			Form f1("F1-FF", 10 , 9);
+			b1.signForm(f1);
 
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << "exception caught : " << RED << e.what() << RESET << std::endl;
+		}
 	}
 	std::cout << "\n";
 	{
 		try
 		{
 			Bureaucrat b1(14, "anass");
-			Form f1("F1-FF", 10 , 12);
-			b1.signForm(f1, b1);
+			Form f1("F1-FF", 10 , 9);
+			b1.signForm(f1);
 		}
-		catch(Bureaucrat::GradeTooLowException& e)
+		catch (const std::exception &e)
 		{
-			std::cerr <<  e.what();
-		}
-		catch(Form::GradeTooHighException& e)
-		{
-			std::cerr <<  e.what();
-		}
-		catch(Form::GradeTooLowException& e)
-		{
-			std::cerr <<  e.what();
+			std::cerr << "exception caught : " << RED << e.what() << RESET << std::endl;
 		}
 	}
 	

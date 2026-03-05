@@ -19,25 +19,13 @@ int	main(void)
 			std::cout << "the inventory doens't make this form" << std::endl;
 			throw "Error";
 		}
-		b1.signForm(*form, b1);
+		b1.signForm(*form);
 		b1.executeForm(*form);
 		delete (form);
 	}
-	catch(Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr <<  e.what();
-	}
-		catch(AForm::GradeTooHighException& e)
-	{
-		std::cerr <<  e.what();
-	}
-	catch(AForm::GradeTooLowException& e)
-	{
-		std::cerr <<  e.what();
-	}
-	catch(...)
-	{
-		std::cerr << "exception caught : something went wrong" << std::endl;
-	}
+		catch (const std::exception &e)
+		{
+			std::cerr << "exception caught : " << RED << e.what() << RESET << std::endl;
+		}
 	return (0);
 }
