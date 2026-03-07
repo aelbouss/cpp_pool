@@ -57,11 +57,10 @@ std::string	AForm::get_name(void) const
 
 std::ostream&	operator << (std::ostream& os , const AForm& f)
 {
-	os << "Name : " << f.get_name( ) << "grade signed : " << 
-		f.get_sign_grade() << " grade execute : " << f.get_execute_grade() << std::endl;
+	os <<  "Name : " << f.get_name( ) << " sign flag : " << f.get_form_status() << " sign grade : " << 
+		f.get_sign_grade() << " execute grade : " << f.get_execute_grade() << std::endl;
 	return (os);
 }
-
 void	AForm::beSigned(Bureaucrat& b)
 {
 	if (b.getGrade() <= grade_s)
