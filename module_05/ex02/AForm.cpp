@@ -79,6 +79,8 @@ void	AForm::execute(Bureaucrat const & executor) const
 			std::cerr << "the form " << get_name() << " will not be executed : ";
 			throw Bureaucrat::GradeTooLowException();
 	}
+	
+	
 }
 
 bool	AForm::get_form_status(void) const

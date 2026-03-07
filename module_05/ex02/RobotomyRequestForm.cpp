@@ -23,7 +23,6 @@ std::string	RobotomyRequestForm::get_target_name(void) const { return(target); }
 void	RobotomyRequestForm::perform_task(void) const
 {
 	std::cout << "VRRRRRRRRRRRRRRRRRRRR..." << std::endl;
-	srand(time(NULL));
 	if (std::rand() % 2 == 0)
 		std::cout << this->target + " has been robotomized successfully" << std::endl;
 	else
