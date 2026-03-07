@@ -8,7 +8,7 @@ class Bureaucrat;
 class	AForm
 {
 	private:
-		std::string name;
+		const std::string name;
 		bool	is_signed;
 		bool	is_executed;
 		int grade_s;
@@ -30,21 +30,13 @@ class	AForm
 
 		class	GradeTooHighException :public std::exception
 		{
-			private:
-				int	grade;
 			public:
-				GradeTooHighException(int grade);
-				virtual ~GradeTooHighException() throw();
 				const char	*what() const throw();
 		};
 
 		class GradeTooLowException
 		{
-			private:
-				int	grade;
 			public:
-				GradeTooLowException(int Grade);
-				virtual ~GradeTooLowException() throw();
 				const char	*what() const throw();
 		};
 };

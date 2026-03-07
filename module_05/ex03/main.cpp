@@ -7,6 +7,7 @@
 
 int	main(void)
 {
+	std::srand(time(0));
 	try
 	{
 		Bureaucrat	b1(5, "anass");

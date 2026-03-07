@@ -7,8 +7,8 @@
 class Bureaucrat
 {
 	private:
-		std::string name;
-		int	grade;
+		const std::string name;
+		int	grade ;
 	public:
 		Bureaucrat();
 		Bureaucrat(int Grade, std::string Name);
@@ -23,21 +23,13 @@ class Bureaucrat
 		// exceptions nested classes
 		class	GradeTooHighException :public std::exception
 		{
-			private:
-				int	grade;
 			public:
-				GradeTooHighException(int grade);
-				virtual ~GradeTooHighException() throw();
 				virtual	const char *what() const throw();
 		};
 
 		class GradeTooLowException :public std::exception
 		{
-			private:
-				int	grade;
 			public:
-				GradeTooLowException(int Grade);
-				virtual ~GradeTooLowException() throw();
 				virtual	const char *what() const throw();
 		};
 };

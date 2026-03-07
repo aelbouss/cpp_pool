@@ -1,9 +1,6 @@
 # include "Intern.hpp"
 
-Intern::Intern()
-{
-
-}
+Intern::Intern() {}
 Intern&	Intern::operator = (const Intern& src)
 {
 	if (this == &src)

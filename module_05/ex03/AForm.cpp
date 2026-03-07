@@ -1,43 +1,36 @@
 # include "AForm.hpp"
 
-AForm::AForm()
+AForm::AForm() :name("Noform")
 {
-	this->name = "NOform";
 	this->grade_e = 0 ;
 	this->grade_s = 0 ;
 	this->is_signed = false ;
 }
 
-AForm::AForm(std::string Name, int Grade_sign, int Grade_exec)
+AForm::AForm(std::string Name, int Grade_sign, int Grade_exec) :name(Name)
 {
 	if (Grade_sign < 1)
-		throw GradeTooHighException(Grade_sign);
+		throw AForm::GradeTooHighException();
 	if (Grade_exec < 1)
-		throw GradeTooHighException(Grade_exec);
+		throw AForm::GradeTooHighException();
 	if (Grade_sign > 150)
-		throw GradeTooLowException(Grade_sign);
+		throw AForm::GradeTooLowException();
 	if (Grade_exec > 150)
-		throw GradeTooLowException(Grade_exec);
+		throw AForm::GradeTooLowException();
 	is_signed = false;
 	is_executed = false;
-	name = Name;
 	grade_s = Grade_sign;
 	grade_e = Grade_exec;
 }
 
 AForm::AForm(const AForm& src)
 {
-	this->name = src.name;
-	this->grade_e = src.grade_e;
-	this->grade_s = src.grade_s;
-	this->is_signed = src.is_signed;
-	this->is_executed = src.is_signed;
+	(*this) = src ;
 }
 AForm&	AForm::operator=(const AForm& src)
 {
 	if (this == &src)
 		return (*this);
-	this->name = src.name;
 	this->grade_e = src.grade_e;
 	this->grade_s = src.grade_s;
 	this->is_signed = src.is_signed;
@@ -76,7 +69,7 @@ void	AForm::beSigned(Bureaucrat& b)
 	else
 	{
 		std::cerr <<" Bureacucrat : "<< b.getName() << " couldn't sign : " << this->get_name() << "  because : " ;
-		throw AForm::GradeTooLowException(b.getGrade());
+		throw AForm::GradeTooLowException();
 	}
 }
 
@@ -85,7 +78,7 @@ void	AForm::execute(Bureaucrat const & executor) const
 	if (executor.getGrade() > get_execute_grade())
 	{
 			std::cerr << "the form " << get_name() << " will not be executed : ";
-			throw GradeTooLowException(executor.getGrade());
+			throw Bureaucrat::GradeTooLowException();
 	}
 }
 
@@ -99,19 +92,13 @@ bool	AForm::get_execution_status(void) const
 	return (is_executed);
 }
 
-AForm::GradeTooHighException::GradeTooHighException(int Grade) :grade(Grade){}
 
 const char * AForm::GradeTooHighException::what() const throw()
 {
 	return ("Form's Grade Is Too High");
 }
-AForm::GradeTooHighException::~GradeTooHighException() throw() {}
-
-
-AForm::GradeTooLowException::GradeTooLowException(int Grade) :grade(Grade){}
 
 const char *AForm::GradeTooLowException::what() const throw()
 {
 	return ("Form's Grade Is Too Low") ;
 }
-AForm::GradeTooLowException::~GradeTooLowException() throw() {}

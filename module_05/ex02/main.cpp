@@ -6,6 +6,8 @@
 
 int	main(void)
 {
+
+	std::srand(time(0));
 	{
 		try
 		{

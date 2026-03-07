@@ -10,7 +10,7 @@ class Form;
 class Bureaucrat
 {
 	private:
-		std::string name;
+		const std::string name;
 		int	grade;
 	public:
 		Bureaucrat();
@@ -26,21 +26,13 @@ class Bureaucrat
 		// exceptions nested classes
 		class	GradeTooHighException :public std::exception
 		{
-			private:
-				int	grade;
 			public:
-				GradeTooHighException(int grade);
-				virtual ~GradeTooHighException() throw();
 				const char	*what() const throw() ;
 		};
 
 		class GradeTooLowException :public std::exception
 		{
-			private:
-				int	grade;
 			public:
-				GradeTooLowException(int Grade);
-				virtual ~GradeTooLowException() throw();
 				const char	*what() const throw() ;
 		};
 };

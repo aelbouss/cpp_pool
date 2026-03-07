@@ -1,41 +1,35 @@
 # include "Form.hpp"
 
-Form::Form()
+Form::Form() :name("NOform")
 {
-	this->name = "NOform";
 	this->grade_e = 0 ;
 	this->grade_s = 0 ;
 	this->is_signed = false ;
 }
 
-Form::Form(std::string Name, int Grade_sign, int Grade_exec)
+Form::Form(std::string Name, int Grade_sign, int Grade_exec) :name(Name)
 {
 	if (Grade_sign < 1)
-		throw GradeTooHighException(Grade_sign);
+		throw Form::GradeTooHighException();
 	if (Grade_exec < 1)
-		throw GradeTooHighException(Grade_exec);
+		throw Form::GradeTooHighException();
 	if (Grade_sign > 150)
-		throw GradeTooLowException(Grade_sign);
+		throw Form::GradeTooLowException();
 	if (Grade_exec > 150)
-		throw GradeTooLowException(Grade_exec);
+		throw Form::GradeTooLowException();
 	is_signed = false;
-	name = Name;
 	grade_s = Grade_sign;
 	grade_e = Grade_exec;
 }
 
 Form::Form(const Form& src)
 {
-	this->name = src.name;
-	this->grade_e = src.grade_e;
-	this->grade_s = src.grade_s;
-	this->is_signed = src.is_signed;
+	(*this) = src ;
 }
 Form&	Form::operator=(const Form& src)
 {
 	if (this == &src)
 		return (*this);
-	this->name = src.name;
 	this->grade_e = src.grade_e;
 	this->grade_s = src.grade_s;
 	this->is_signed = src.is_signed;
@@ -73,7 +67,7 @@ void	Form::beSigned(Bureaucrat& b)
 	else
 	{
 		std::cerr <<" Bureacucrat : "<< b.getName() << " couldn't sign : " << this->get_name() << "  because : " ;
-		throw Form::GradeTooLowException(b.getGrade());
+		throw Form::GradeTooLowException();
 	}
 }
 
@@ -82,19 +76,12 @@ bool	Form::get_form_status(void) const
 	return (is_signed);
 }
 
-Form::GradeTooHighException::GradeTooHighException(int Grade) :grade(Grade){}
-
 const char * Form::GradeTooHighException::what() const throw()
 {
 	return ("Form's Grade Is Too High");
 }
-Form::GradeTooHighException::~GradeTooHighException() throw() {}
-
-
-Form::GradeTooLowException::GradeTooLowException(int Grade) :grade(Grade){}
 
 const char *Form::GradeTooLowException::what() const throw()
 {
 	return ("Form's Grade Is Too Low") ;
 }
-Form::GradeTooLowException::~GradeTooLowException() throw() {}
