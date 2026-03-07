@@ -7,7 +7,7 @@ int	main(void)
 		try
 		{
 			Bureaucrat b1(11 , "anass");
-			std::cout << b1 <<std::endl;
+			std::cout << b1 << std::endl;
 			b1.increment();
 			Form f1("F1-FF", 10 , 9);
 			b1.signForm(f1);

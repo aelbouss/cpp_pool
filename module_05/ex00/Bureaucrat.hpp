@@ -15,12 +15,11 @@ class Bureaucrat
 		Bureaucrat& operator = (const Bureaucrat& src);
 		Bureaucrat(const Bureaucrat& src);
 		~Bureaucrat();
-		std::string	getName(void)const;
+		std::string	getName(void) const;
 		int	getGrade(void) const;
 		void	increment(void);
 		void	decrement(void);
 		
-		// exceptions nested classes
 		class	GradeTooHighException :public std::exception
 		{
 			public:

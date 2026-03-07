@@ -24,9 +24,9 @@ int	main(void)
 		b1.executeForm(*form);
 		delete (form);
 	}
-		catch (const std::exception &e)
-		{
-			std::cerr << "exception caught : " << RED << e.what() << RESET << std::endl;
-		}
+	catch (const std::exception &e)
+	{
+		std::cerr << "exception caught : " << RED << e.what() << RESET << std::endl;
+	}
 	return (0);
 }

@@ -25,7 +25,7 @@ void	RobotomyRequestForm::perform_task(void) const
 	std::cout << "VRRRRRRRRRRRRRRRRRRRR..." << std::endl;
 	srand(time(NULL));
 	if (std::rand() % 2 == 0)
-		std::cout << this->target + "has been robotomized successfully" << std::endl;
+		std::cout << this->target + " has been robotomized successfully" << std::endl;
 	else
 		std::cout << "The robotomy failed." << std::endl;
 }

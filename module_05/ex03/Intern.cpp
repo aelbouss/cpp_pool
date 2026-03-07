@@ -67,7 +67,5 @@ AForm	*Intern::makeForm(std::string formName, std::string target)
 	return (NULL);
 }
 
-Intern::~Intern()
-{
-}
+Intern::~Intern() {}
 

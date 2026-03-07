@@ -22,7 +22,7 @@ class	Form
 		int		get_execute_grade(void) const ;
 		std::string	get_name(void) const ;
 		bool	get_form_status(void) const ;
-		void	beSigned(Bureaucrat& b); // here
+		void	beSigned(Bureaucrat& b);
 
 		class	GradeTooHighException :public std::exception
 		{

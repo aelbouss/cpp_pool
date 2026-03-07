@@ -77,7 +77,6 @@ const char * Bureaucrat::GradeTooHighException::what() const throw()
 	return ("Bureaucrat's Grade Is Too High");
 }
 
-
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return ("Bureaucrat's Grade Is Too Low") ;

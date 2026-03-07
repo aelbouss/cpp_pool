@@ -23,7 +23,7 @@ class Bureaucrat
 		void	increment(void);
 		void	decrement(void);
 		void	signForm(Form& f);
-		// exceptions nested classes
+
 		class	GradeTooHighException :public std::exception
 		{
 			public:

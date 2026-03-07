@@ -68,19 +68,24 @@ void	AForm::beSigned(Bureaucrat& b)
 		is_signed = true;
 	else
 	{
-		std::cerr <<" Bureacucrat : "<< b.getName() << " couldn't sign : " << this->get_name() << "  because : " ;
+		std::cerr <<"Bureacucrat : "<< b.getName() << " couldn't sign : " << this->get_name() << "  because : " ;
 		throw AForm::GradeTooLowException();
 	}
 }
 void	AForm::execute(Bureaucrat const & executor) const
 {
 	if (executor.getGrade() > get_execute_grade())
-	{
+	{	
+		try
+		{
 			std::cerr << "the form " << get_name() << " will not be executed : ";
 			throw Bureaucrat::GradeTooLowException();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 	}
-	
-	
 }
 
 bool	AForm::get_form_status(void) const
