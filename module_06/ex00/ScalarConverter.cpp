@@ -104,7 +104,15 @@ void	ScalarConverter::convert(const std::string& str)
 
 	if (!check_for_printables(str))
 		return ;
-	nbr = strtod(str.c_str(), &endpts);
+	if (str.size() == 1 && !std::isdigit(str[0]))
+		nbr = static_cast<double>(str[0]);
+	else
+		nbr = strtod(str.c_str(), &endpts);
+	if (*endpts == 'f' && *(endpts + 1) != 0)
+	{
+		std::cerr << "invalid input" << std::endl;
+		return ;
+	}
 	char_check(nbr);
 	check_int(nbr);
 	check_float(nbr);
