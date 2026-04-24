@@ -9,6 +9,7 @@ int	main(int ac, char **av)
 	{
 		std::cerr << "invalid number of args" << std::endl;
 		std::cerr << "usage: ./program_name \"argument\"" << std::endl;	
+		return -1 ;
 	}
 	ScalarConverter::convert(av[1]);
 

@@ -12,14 +12,15 @@ Base * generate(void)
 	choice = (std::rand() % 3) + 1;
 	if (choice == 1)
 		data = new A();
-	if (choice == 2)
+	else if (choice == 2)
 		data = new B();
-	if (choice == 3)
+	else if (choice == 3)
 		data = new C();
-	if (!data)
+	else
 		return (NULL);
 	return data ;
 }
+
 void identify(Base* p)
 {
 	A	*Aptr = dynamic_cast<A *>(p);
@@ -42,6 +43,7 @@ void identify(Base* p)
 	}
 	std::cerr << "invalid type" << std::endl;
 }
+
 void identify(Base& p)
 {
 	

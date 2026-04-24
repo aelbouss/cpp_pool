@@ -108,7 +108,7 @@ void	ScalarConverter::convert(const std::string& str)
 		nbr = static_cast<double>(str[0]);
 	else
 		nbr = strtod(str.c_str(), &endpts);
-	if (*endpts == 'f' && *(endpts + 1) != 0)
+	if (str.empty() || (*endpts == 'f' && *(endpts + 1) != 0) || ((str.size() != 1) && (*endpts != 'f' &&  *endpts != 0)))
 	{
 		std::cerr << "invalid input" << std::endl;
 		return ;
