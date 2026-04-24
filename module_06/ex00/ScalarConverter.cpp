@@ -38,7 +38,7 @@ void	char_check(double nbr)
 		std::cout << "char: Non displayable"<< std::endl;
 		return ;
 	}
-	std::cout << "char : "<< static_cast<char>(nbr) << std::endl;
+	std::cout << "char : '"<< static_cast<char>(nbr) << "'" << std::endl;
 }
 
 void	check_int(double nbr)
@@ -99,7 +99,7 @@ void	check_double(double nbr)
 
 void	ScalarConverter::convert(const std::string& str)
 {
-	char	*endpts;
+	char	*endpts = NULL;
 	double nbr;
 
 	if (!check_for_printables(str))
@@ -108,10 +108,14 @@ void	ScalarConverter::convert(const std::string& str)
 		nbr = static_cast<double>(str[0]);
 	else
 		nbr = strtod(str.c_str(), &endpts);
-	if (str.empty() || (*endpts == 'f' && *(endpts + 1) != 0) || ((str.size() != 1) && (*endpts != 'f' &&  *endpts != 0)))
+	if (endpts)
 	{
-		std::cerr << "invalid input" << std::endl;
-		return ;
+
+		if (str.empty() || (!((*endpts == 'f' && *(endpts + 1) == 0 ) || (*endpts == 0))))
+		{
+			std::cerr << "invalid input" << std::endl;
+			return ;
+		}
 	}
 	char_check(nbr);
 	check_int(nbr);

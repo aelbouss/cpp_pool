@@ -1,5 +1,5 @@
 CPPC = c++
-CPPFLAGS = -Wall -Werror -Wextra
+CPPFLAGS = -g -fsanitize=address -Wall -Werror -Wextra
 STD = -std=c++98
 
 TARGET = ex00
