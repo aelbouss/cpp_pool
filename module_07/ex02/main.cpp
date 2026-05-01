@@ -18,7 +18,7 @@ int	main(void)
 		strs[2] = "per la vita";
 		for (int i = 0 ; i <  strs.get_size() ; i++)
 			std::cout << strs[i] << std::endl;
-		floats[3] = 1.5;
+		floats[1] = 1.5;
 	}
 	catch(const std::exception& e)
 	{

@@ -33,9 +33,9 @@ class	array
 
 		~array() { delete[] this->arr; }
 
-		T	&operator [] (int idx) // subscript operator 
+		T	&operator [] (int idx)
 		{
-				if (idx > this->size || idx <  0)
+				if (idx >= this->size || idx <  0)
 					throw ArrayException();
 			return (this->arr[idx]);
 		}
