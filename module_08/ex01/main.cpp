@@ -12,11 +12,11 @@ int		main(void)
 		{
 			for(int i = 0 ; i < 1000; i++)
 				sp.addNumber(i+i);
-			std::cout << sp.longestSpan() << std::endl;
-			std::cout << sp.shortestSpan() << std::endl;
+			std::cout << "Longest Span : " << sp.longestSpan() << std::endl;
+			std::cout << "Shortest Span : " << sp.shortestSpan() << std::endl;
 		}
 
-			std::cout << "=====================================" << std::endl;
+			std::cout << "====================" << std::endl;
 		{
 			std::vector<int> vec;
 			vec.push_back(6);
@@ -27,8 +27,8 @@ int		main(void)
 			std::vector<int>::iterator begin = vec.begin();
 			std::vector<int>::iterator end = vec.end();
 			sp2.addnNmbers(begin, end);
-			std::cout << sp2.longestSpan() << std::endl;
-			std::cout << sp2.shortestSpan() << std::endl;
+			std::cout << "Longest Span : " << sp2.longestSpan() << std::endl;
+			std::cout << "Shortest Span : " << sp2.shortestSpan() << std::endl;
 		}
 	}
 	catch(const std::exception& e)
