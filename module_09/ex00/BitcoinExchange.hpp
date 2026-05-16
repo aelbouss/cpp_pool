@@ -6,7 +6,7 @@
 /*   By: aelbouss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 22:16:08 by aelbouss          #+#    #+#             */
-/*   Updated: 2026/05/16 00:50:35 by aelbouss         ###   ########.fr       */
+/*   Updated: 2026/05/16 02:52:30 by aelbouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <bits/stdc++.h>
 # include <cstring>
 # include <algorithm>
+# include <sstream>
 
 class	BitcoinExchange
 {
@@ -42,5 +43,6 @@ class	BitcoinExchange
 # define  RED "\e[0;31m"
 # define  RESET "\e[0m"
 # define GREEN "\e[0;32m"
+# define YELLOW	"\e[0;33m"
 
 # endif

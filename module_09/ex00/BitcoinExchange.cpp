@@ -72,6 +72,24 @@ void	remove_start_spaces(std::string& str)
 }
 
 
+/**
+ * @brief splits one string into many with using a separator
+ * @param s the string should be splited
+ * @param delimiter the separator used to split the string
+ * @return vector contain tokens
+ */
+
+std::vector<std::string> split(const std::string& s, char delimiter)
+{
+    std::vector<std::string> tokens;
+    std::string token;
+    std::istringstream tokenStream(s);
+    while (std::getline(tokenStream, token, delimiter))
+    {
+        tokens.push_back(token);
+    }
+    return tokens;
+}
 
 
 /**
@@ -110,15 +128,45 @@ bool	BitcoinExchange::parse_db_file(std::string file)
 		remove_start_spaces(value);
 		in_container.insert(std::make_pair(key, value));
 	}
-	std::multimap<std::string, std::string>::iterator it;
+	/*std::multimap<std::string, std::string>::iterator it;
 	for (it = in_container.begin() ; it != in_container.end() ; ++it)
-		std::cout << RED  << "Key => {" << it->first << "} " << RESET << GREEN  << "Value => {" << it->second << "}" << RESET << std::endl;
+		std::cout << RED  << "Key => {" << it->first << "} " << RESET << GREEN  << "Value => {" << it->second << "}" << RESET << std::endl;*/
+	return true;
+}
+
+bool	BitcoinExchange::parse_date()
+{
+	std::string	date;
+	short		day;
+	short 		month;
+	short		year;
+	std::vector<std::string> tokens;
+
+	std::multimap<std::string, std::string>::iterator it = in_container.begin();
+	while (it != in_container.end())
+	{
+		date = it->first;
+		tokens = split(date, '-');
+		day   = atoi(tokens[0].c_str());
+		month = atoi(tokens[1].c_str());
+		year  = atoi(tokens[2].c_str());
+		std::cout << YELLOW  << day << RESET << std::endl;
+		std::cout << YELLOW  << month << RESET << std::endl;
+		std::cout << YELLOW  << year  << RESET << std::endl;
+		std::cout << RED << "==================" << RESET << std::endl;
+		++it;
+	}
 	return true;
 }
 
 
 
-/*bool	BitcoinExchange::arse_date();
-bool	BitcoinExchange::arse_value();*/
+
+
+
+
+
+
+/*bool	BitcoinExchange::arse_value();*/
 
 

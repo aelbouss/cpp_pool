@@ -10,6 +10,8 @@ int	main(int ac, char **av)
 	}
 	if (!BitcoinEngine.parse_db_file(av[1]))
 		return -1;
+	if (!BitcoinEngine.parse_date())
+		return -1;
 
 	return (0);
 }
