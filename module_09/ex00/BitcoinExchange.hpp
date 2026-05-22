@@ -24,16 +24,16 @@
 class	BitcoinExchange
 {
 	private:
-		std::multimap<std::string, std::string> db_Container;
+		std::multimap<std::string, float> db_container;
 		std::multimap<std::string, std::string> in_container;
  	public:
 		BitcoinExchange();
 		BitcoinExchange&	operator = (const BitcoinExchange& src);
 		BitcoinExchange(const BitcoinExchange& src);
 		~BitcoinExchange();
-		bool	parse_db_file(std::string file);
-		bool	parse_date();
-		bool	parse_value();
+		void	parse_db_file(void);
+	    void	parse_value(void);
+        void    parse_date(std::string date);
 };
 
 

@@ -11,7 +11,7 @@ BitcoinExchange&  BitcoinExchange::operator = (const BitcoinExchange& src)
 {
 	if (this != &src)
 	{
-		this->db_Container = src.db_Container;
+		this->db_container = src.db_container;
 		this->in_container = src.in_container;	
 	}
 	return (*this);
@@ -27,7 +27,6 @@ BitcoinExchange::~BitcoinExchange()
 {
 
 }
-
 
 
 /**
@@ -93,80 +92,146 @@ std::vector<std::string> split(const std::string& s, char delimiter)
 
 
 /**
- * @brief parse input file content : day, month , year
- * @param file	which is the file accepted from av
- * @return true or  false
+ * @brief parse databse file extract date and exchange value
+ * @param takes nothing
+ * @return returns nothing
  */
 
-
-bool	BitcoinExchange::parse_db_file(std::string file)
+short   count_separators(std::string date)
 {
-	std::string	Buffer;
-	std::string	key;
-	std::string	value;
-	std::fstream	infile(file.c_str());
+    size_t i = 0;
+    short cnt = 0;
+
+    while (date[i])
+    {
+        if (date[i] == '-')
+            cnt++;
+        i++;
+    }
+    return cnt;
+}
+
+bool    check_valid_chars(std::string str)
+{
+    for (size_t i = 0 ; i < str.length() ; i++)
+    {
+        if ((str[i] < '0' || str[i] > '9') && (str[i] != '-') && (str[i] != ',') && (str[i] != '.'))
+        {
+            std::cout << "the char => (" << str[i] << ")"<< std::endl;
+            return false;
+        }
+    }
+    return true ;
+}
+
+/**
+ * @brief parse all the date detailes
+ * @param the date should be parsed
+ * @return nothing
+ */
+
+void 	BitcoinExchange::parse_date(std::string date)
+{
+    short   day;
+    short   month;
+    short   year;
+    std::vector <std::string> tokens;
+
+    if (count_separators(date) != 2)
+        throw std::runtime_error("Bad Inpu Date");
+    tokens = split(date, '-');
+    year = atoi(tokens[0].c_str());
+    month = atoi(tokens[1].c_str());
+    day = atoi(tokens[2].c_str());
+
+    if ( year < 2009 || year > 2022)
+        throw std::runtime_error("Invalid DataBase Date");
+    if (month < 1 || month > 12)
+        throw std::runtime_error("Invalid DataBase Date");
+    if (day < 1 || day > 31)
+        throw std::runtime_error("Invalid DataBase Date");
+    if ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0)))
+    {
+
+        if ((month == 2) && (day < 1 || day > 29))
+        {
+            std::cout << "The Invalide Date : " << date << std::endl;
+            throw std::runtime_error("Invalid DataBase Date HH");
+        }
+    }
+    else
+    {
+        if ((month == 1) && ( day < 1 || day > 31))
+            throw std::runtime_error("Invalid DataBase Date");
+        if ((month == 2) && (day < 1 || day > 28))
+            throw std::runtime_error("Invalid DataBase Date");
+        if ((month == 3) && (day < 1 || day > 31))
+            throw std::runtime_error("Invalid DataBase Date");
+        if ((month == 4) && (day < 1 || day > 30))
+            throw std::runtime_error("Invalid DataBase Date");
+        if ((month == 5) && (day < 1 || day > 31))
+            throw std::runtime_error("Invalid DataBase Date");
+        if ((month == 6) && (day < 1 || day > 30))
+            throw std::runtime_error("Invalid DataBase Date");
+        if ((month == 7) && (day < 1 || day > 31))
+            throw std::runtime_error("Invalid DataBase Date");
+        if ((month == 8) && (day < 1|| day > 31))
+            throw std::runtime_error("Invalid DataBase Date");
+        if ((month == 9) && (day < 1 || day > 30))
+            throw std::runtime_error("Invalid DataBase Date");
+        if ((month == 10) && (day < 1 || day > 31))
+            throw std::runtime_error("Invalid DataBase Date");
+        if ((month == 11) && (day < 1 || day > 30))
+            throw std::runtime_error("Invalid DataBase Date");
+        if ((month == 12) && (day < 1 || day > 31))
+            throw std::runtime_error("Invalid DataBase Date");
+    }
+}
+
+/**
+ * @brief parse the database
+ * @param takes nothing
+ * @return nothing
+ */
+
+void	BitcoinExchange::parse_db_file(void)
+{
+	std::string     Buffer;
+	std::string     date;
+	std::string     s_value;
+    float           value;
+	std::fstream    infile("data.csv");
 
 	if (!infile)
-	{
-		std::cerr << RED << "Error : Couldn't open the input file !" << RESET << std::endl;
-		return false;
-	}
+        throw std::runtime_error("Couldn't Open DataBase File");
 	while (getline(infile, Buffer))
 	{
-		size_t	idx = Buffer.find("|");
+        size_t	idx = Buffer.find(",");
 		if (idx == std::string::npos)
-		{
-			key = Buffer;
-			remove_end_spaces(key);
-			value = "0";
-			in_container.insert(std::make_pair(key, value));
-			continue ;	
-		}
-		key = Buffer.substr(0, idx);
-		remove_end_spaces(key);	
-		value = Buffer.substr(idx + 1 , Buffer.length() - 1);
-		remove_start_spaces(value);
-		in_container.insert(std::make_pair(key, value));
+            throw std::runtime_error("Error : Bad database entries");
+		date = Buffer.substr(0, idx);
+		s_value = Buffer.substr(idx + 1 , Buffer.length() - 1);
+        if (date == "date")
+            continue ;
+        if (!check_valid_chars(Buffer))
+        {
+            std::cout << Buffer << std::endl;
+            throw std::runtime_error("Error : Bad DataBase entries 1");
+        }
+        parse_date(date);
+        std::stringstream   ss(s_value.c_str());
+        ss >> value ;
+		db_container.insert(std::make_pair(date, value));
 	}
-	/*std::multimap<std::string, std::string>::iterator it;
-	for (it = in_container.begin() ; it != in_container.end() ; ++it)
-		std::cout << RED  << "Key => {" << it->first << "} " << RESET << GREEN  << "Value => {" << it->second << "}" << RESET << std::endl;*/
-	return true;
+    infile.close();
+
+    /*   the print statement */
+    std::map<std::string, float>::iterator it = db_container.begin();
+    while (it != db_container.end())
+    {
+        std::cout << GREEN << "the date : "<< it->first << RED << " value : " << it->second << std::endl;
+        it++;
+    }
 }
-
-bool	BitcoinExchange::parse_date()
-{
-	std::string	date;
-	short		day;
-	short 		month;
-	short		year;
-	std::vector<std::string> tokens;
-
-	std::multimap<std::string, std::string>::iterator it = in_container.begin();
-	while (it != in_container.end())
-	{
-		date = it->first;
-		tokens = split(date, '-');
-		day   = atoi(tokens[0].c_str());
-		month = atoi(tokens[1].c_str());
-		year  = atoi(tokens[2].c_str());
-		std::cout << YELLOW  << day << RESET << std::endl;
-		std::cout << YELLOW  << month << RESET << std::endl;
-		std::cout << YELLOW  << year  << RESET << std::endl;
-		std::cout << RED << "==================" << RESET << std::endl;
-		++it;
-	}
-	return true;
-}
-
-
-
-
-
-
-
-
-
-/*bool	BitcoinExchange::arse_value();*/
 
 
