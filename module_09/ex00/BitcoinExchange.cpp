@@ -302,7 +302,6 @@ void    BitcoinExchange::parse_input(std::string file)
             --it;
             exchange_rate = it->second;
         }
-        res = (f_value * exchange_rate);
         if (f_value < 0)
         {
             std::cerr << "Error : not a positive number" << std::endl;
@@ -314,7 +313,10 @@ void    BitcoinExchange::parse_input(std::string file)
             continue ;
         }
         else
+        {
+            res = f_value * exchange_rate;
             std::cout << date << " => " << f_value << " = " << res << std::endl;
+        }
     }
     infile.close();
 }
