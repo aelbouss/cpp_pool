@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelbouss <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: flex <flex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 22:16:08 by aelbouss          #+#    #+#             */
-/*   Updated: 2026/05/16 02:52:30 by aelbouss         ###   ########.fr       */
+/*   Updated: 2026/05/28 14:17:18 by flex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@
 class	BitcoinExchange
 {
 	private:
-		std::multimap<std::string, float> db_container;
-		std::multimap<std::string, std::string> in_container;
+		std::map<std::string, float> db_container;
  	public:
 		BitcoinExchange();
 		BitcoinExchange&	operator = (const BitcoinExchange& src);
 		BitcoinExchange(const BitcoinExchange& src);
 		~BitcoinExchange();
 		void	parse_db_file(void);
+        void    parse_input(std::string file);
 	    void	parse_value(void);
-        void    parse_date(std::string date);
+        bool 	parse_date(std::string date);
 };
 
 

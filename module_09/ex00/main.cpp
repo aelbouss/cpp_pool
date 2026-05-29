@@ -4,15 +4,14 @@ int	main(int ac, char **av)
 {
     BitcoinExchange	BitcoinEngine;    
     
-    (void)av;
-    (void)ac;
-	/*if (ac != 2)
+	if (ac != 2)
 	{
 		std::cerr << RED << "Invalid Arguments Number"<< RESET << std::endl; return (1);
-	}*/
+	}
     try
     {
     	BitcoinEngine.parse_db_file();
+        BitcoinEngine.parse_input(av[1]);
     }
     catch (std::exception & e)
     {
@@ -20,5 +19,3 @@ int	main(int ac, char **av)
     }
 	return (0);
 }
-
-
