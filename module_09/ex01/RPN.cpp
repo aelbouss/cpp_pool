@@ -36,7 +36,7 @@ int    RPN::get_top()
 }
 
 
- void    parse_input(char *str)
+ void    process_input(char *str)
  {
     std::string input(str);
     int nb1, nb2;
@@ -48,12 +48,10 @@ int    RPN::get_top()
     if (input.find_first_not_of(" \t\r") == std::string::npos)
         throw std::runtime_error("empty input !");
 
-    // "8 9 * 9 - 9 - 9 - 4 - 1 +"
-
     for (size_t i = 0 ; i < input.size() ; i++)
     {
         if (!(input[i] >= '0' && input[i] <= '9') && input[i] != '*' && input[i] != '+'  &&  input[i] != '-' && input[i] != '/' && input[i] != ' ')
-         throw std::runtime_error("Error : Invalid Input");
+         throw std::runtime_error("Error");
         if (input[i] >= '0' && input[i] <= '9')
         {
             obj.push_value(input[i] - '0');
@@ -82,13 +80,13 @@ int    RPN::get_top()
             }
             else if (input[i] == '/')
             {
-                if (nb2 < 0)
-                    throw std::runtime_error("Error");
+                if (nb2 <= 0)
+                    throw std::runtime_error("Error : division by zero is impossible");
                  res = nb1 / nb2 ;
                  obj.push_value(res);
             }
         }
     }
-    std::cout << obj.get_top() << std::endl;
-    obj.pop_value();
+        if (obj.get_container_size() == 1)
+            std::cout << obj.get_top() << std::endl;
  }

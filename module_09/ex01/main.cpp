@@ -10,7 +10,7 @@ int main(int ac, char **av)
     }
     try
     {
-        parse_input(av[1]);
+        process_input(av[1]);
     }
     catch(const std::exception& e)
     {

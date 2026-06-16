@@ -22,6 +22,6 @@ class RPN
         size_t  get_container_size();
 };
 
- void   parse_input(char *str);
+ void   process_input(char *str);
 
 # endif
