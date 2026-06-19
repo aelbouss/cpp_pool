@@ -3,29 +3,31 @@
 
 # include <iostream>
 # include <queue>
+# include <list>
 # include <cstdlib>
 # include <algorithm>
 
 
-class   PmergeMe
-{
-    private:
-        std::vector<std::pair<int, int> >   pairs;
-        std::vector<int>                    winners_list;
-        std::vector<int>                    losers_list;
-    public:
+    class   PmergeMeList
+    {
+        private:
+                struct  Element
+                {
+                    int nbr;
+                    std::list <Element*> defeated;
+                };
+               // std::list<Elements *> container;
+                std::list<int>  container;
+        public:
+                PmergeMeList();
+                PmergeMeList&   operator << (const PmergeMeList&  src);
+                PmergeMeList(const PmergeMeList& src);
+                ~PmergeMeList();
 
-        void    assign_pair(int n1, int n2);
-        void    display_pairs();
-        void    split_args(char **av, int ac);
-        void    fill_winners(int nb);
-        void    fill_losers(int nb);
-        void    display_winners_losers(void);
-        PmergeMe();
-        PmergeMe&   operator = (const PmergeMe& src);
-        PmergeMe(const PmergeMe& src);
-        ~PmergeMe();
-};
+                void    Collect_sequence(int ac, char **av);
+
+                std::list<Element *>    rec_sort(std::list<Element *>);
+    };
 
 
 bool    is_even(int args_num);
