@@ -23,7 +23,9 @@ void    PmergeMeList::display_container(void)
     std::list<Element*>::iterator it = container.begin();
     while (it != container.end())
     {
-        std::cout << (**it).nbr << std::endl;
+        std::cout << (**it).nbr ;
+        if ((**it).defeated.size() == 0)
+            std::cout << "   => [] " << std::endl;
         it++;
     }
 }
@@ -66,16 +68,47 @@ std::list<Element *>    PmergeMeList::get_container()
 
 std::list<Element *> PmergeMeList::recrusive_sort(std::list<Element *> l)
 {
-    if (l.size() > 1)
+    std::list<Element *>    winners;
+    iter it = l.begin();
+
+    while (it != l.end())
     {
-        std::list<Element *> winners;
-        iter  start = l.begin();
-        iter  end = l.end();
-        while (start != end)
+       
+        iter next = it;
+        ++next;
+        if (next == l.end())
         {
-            if ( (*start)->nbr  > (*))
+            winners.push_back(*it);
+            break ;
+        }
+        Element *first = *it;
+        Element *second = *next;
+        if (first->nbr > second->nbr)
+        {
+            first->defeated.push_back(second);
+            winners.push_back(first);
+        }
+        else
+        {
+            second->defeated.push_back(first);
+            winners.push_back(second);
+        }
+      
+        if (it == l.end())
+            break ;
+        std::advance(it, 2);
+    }
+
+    for (iter it = winners.begin() ; it != winners.end() ; ++it)
+    {
+        std::cout << GREEN << "winner : " <<  (*it)->nbr ;
+        if (!(*it)->defeated.empty())
+        {
+            Element *unit = (**it).defeated.back();
+            std::cout << RED << "  => defeated : " << unit->nbr << RESET << std::endl;
         }
     }
+    return winners ;
 }
 
 

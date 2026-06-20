@@ -11,7 +11,7 @@ int     main(int ac, char **av)
         }
         PmergeMeList    ListEngine(ac, av);
         ListEngine.display_container();
-        //ListEngine.recrusive_sort(ListEngine.get_container());
+        ListEngine.recrusive_sort(ListEngine.get_container());
     }
     catch(const std::exception& e)
     {

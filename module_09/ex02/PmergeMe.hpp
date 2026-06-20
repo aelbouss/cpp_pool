@@ -14,6 +14,8 @@
         std::list <Element*> defeated;
     };
 
+    typedef std::list<Element *>::iterator  iter;
+    
     class   PmergeMeList
     {
         private:
@@ -31,10 +33,6 @@
                 std::list<Element *> recrusive_sort(std::list<Element *>);
     };
 
-    void    colllcet_and_process();
-    bool    is_even(int args_num);
-
-    typedef std::list<Element *>::iterator iter
 
 # define  RED "\e[0;31m"
 # define  RESET "\e[0m"
