@@ -2,10 +2,45 @@
 
 
 PmergeMeList::PmergeMeList() {}
+
+PmergeMeList::PmergeMeList(int ac, char **av)
+{
+    int nbr;
+
+    for (int i = 1 ; i < ac ; i++)
+    {
+        nbr = atoi(av[i]);
+        if (nbr < 0)
+            throw std::runtime_error("Error : The Program Only Accept Positive Numbers");
+        Element *unit = new Element();
+        unit->nbr = nbr;
+        container.push_back(unit);
+    }
+}
+
+void    PmergeMeList::display_container(void)
+{
+    std::list<Element*>::iterator it = container.begin();
+    while (it != container.end())
+    {
+        std::cout << (**it).nbr << std::endl;
+        it++;
+    }
+}
+
 PmergeMeList&   PmergeMeList::operator << (const PmergeMeList&  src)
 {
     if (this != &src)
+    {
+        std::list<Element *>::iterator  it = container.begin();
+        while (it != container.end())
+        {
+            std::list<Element *>::iterator curr = it;
+            it++;
+            delete(*curr);
+        }
         this->container = src.container;
+    }
     return (*this);
 }
 
@@ -13,51 +48,34 @@ PmergeMeList::PmergeMeList(const PmergeMeList& src)
 {
     *this = src;
 }
-PmergeMeList::~PmergeMeList(){}
-
-void    PmergeMeList::Collect_sequence(int ac, char **av)
+PmergeMeList::~PmergeMeList()
 {
-    int nbr1;
-    int nbr2;
-    for (int i = 1 ; i < ac ; i++)
+    std::list<Element *>::iterator  it = container.begin();
+    while (it != container.end())
     {
-        nbr1 = atoi(av[i]);
-        if (nbr1 < 0)
-            throw std::runtime_error("Error : Negative Number");
-        nbr2 = atoi(av[i + 1]);
-         if (nbr2 < 0)
-            throw std::runtime_error("Error : Negative Number");
-        Element *unit = new Element();
-        std::list<Element *>winners;
-        if (nbr1 > nbr2)
-        {
-            unit->nbr = nbr1;
-            unit->defeated.push_back(nbr2);
-        }
-        else
-        {
-            unit->nbr = nbr2;
-            unit->defeated.push_back(nbr1);
-        }
-        winners.push_back(unit);
+        std::list<Element *>::iterator curr = it;
+        it++;
+        delete(*curr);
     }
-
 }
 
-std::list<Element *>    rec_sort(std::list<Element *> l)
+std::list<Element *>    PmergeMeList::get_container()
+{
+    return container ;
+}
+
+std::list<Element *> PmergeMeList::recrusive_sort(std::list<Element *> l)
 {
     if (l.size() > 1)
     {
         std::list<Element *> winners;
-        std::list<Element *>::iterator it = l.begin();
-        while (it != l.end())
+        iter  start = l.begin();
+        iter  end = l.end();
+        while (start != end)
         {
-            Element *unit = new()
-            if (it->nbr < (it + 1)-> nbr)
-            {
-                unit->
-            }
-        } 
+            if ( (*start)->nbr  > (*))
+        }
     }
 }
+
 

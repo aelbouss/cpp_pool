@@ -8,30 +8,33 @@
 # include <algorithm>
 
 
+    struct  Element
+    {
+        int nbr;
+        std::list <Element*> defeated;
+    };
+
     class   PmergeMeList
     {
         private:
-                struct  Element
-                {
-                    int nbr;
-                    std::list <Element*> defeated;
-                };
-               // std::list<Elements *> container;
-                std::list<int>  container;
+                std::list<Element *> container;
         public:
                 PmergeMeList();
+                PmergeMeList(int , char **av);
                 PmergeMeList&   operator << (const PmergeMeList&  src);
                 PmergeMeList(const PmergeMeList& src);
                 ~PmergeMeList();
 
                 void    Collect_sequence(int ac, char **av);
-
-                std::list<Element *>    rec_sort(std::list<Element *>);
+                void    display_container(void);
+                std::list<Element *>    get_container();
+                std::list<Element *> recrusive_sort(std::list<Element *>);
     };
 
+    void    colllcet_and_process();
+    bool    is_even(int args_num);
 
-bool    is_even(int args_num);
-
+    typedef std::list<Element *>::iterator iter
 
 # define  RED "\e[0;31m"
 # define  RESET "\e[0m"

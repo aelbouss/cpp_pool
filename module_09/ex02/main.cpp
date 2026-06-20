@@ -2,7 +2,6 @@
 
 int     main(int ac, char **av)
 {
-    PmergeMeList    ListEngine;
     try
     {
         if (ac < 2)
@@ -10,10 +9,9 @@ int     main(int ac, char **av)
             std::cerr << "Error : provide the sequence of numbers" << std::endl;
             return (1);
         }
-        ListEngine.Collect_sequence(ac, av);
-        // sort_engine.split_args(av, ac - 1);
-        // sort_engine.display_pairs();
-        // sort_engine.display_winners_losers();
+        PmergeMeList    ListEngine(ac, av);
+        ListEngine.display_container();
+        //ListEngine.recrusive_sort(ListEngine.get_container());
     }
     catch(const std::exception& e)
     {
