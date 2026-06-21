@@ -10,8 +10,11 @@ int     main(int ac, char **av)
             return (1);
         }
         PmergeMeList    ListEngine(ac, av);
-        ListEngine.display_container();
-        ListEngine.recrusive_sort(ListEngine.get_container());
+        std::list<Element *> ll =  ListEngine.recrusive_sort(ListEngine.get_container());
+        std::cout << "Sorted Sequence : " ;
+        for (std::list<Element *>::iterator it = ll.begin() ; it != ll.end() ; ++it)
+            std::cout << (*it)->nbr << " ";
+        std::cout << std::endl;
     }
     catch(const std::exception& e)
     {
