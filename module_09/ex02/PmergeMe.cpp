@@ -71,11 +71,45 @@ bool compare_elements(Element *a, Element *b)
     return a->nbr < b->nbr;
 }
 
+
+void jacobstal_binary_insertion(std::list<Element*>& winners, std::list<Element*>& pend_list)
+{
+    if (pend_list.empty())
+        return;
+
+    Element *b1 = pend_list.front();
+    pend_list.pop_front();
+    winners.push_front(b1);
+
+    if (pend_list.empty())
+        return;
+    iter pend_it = pend_list.end();
+    --pend_it; 
+    while (true)
+    {
+        Element* pending_loser = *pend_it;
+        Element* its_winner = pending_loser->partner;
+
+        iter partner_iter = std::find(winners.begin(), winners.end(), its_winner);
+
+        if (partner_iter == winners.end())
+            partner_iter = winners.end();
+        iter insert_slot = std::lower_bound(winners.begin(), partner_iter, pending_loser, compare_elements);
+        winners.insert(insert_slot, pending_loser);
+        if (pend_it == pend_list.begin())
+            break;
+        
+        --pend_it;
+    }
+}
+
+
+
 std::list<Element *> PmergeMeList::recrusive_sort(std::list<Element *> l)
 {
     std::list<Element *>    winners;
     Element                 *straggler =    NULL;
-    std::list<Element *>    pend;
+    std::list<Element *>    pend_list;
     iter    end_s;
 
     if (l.size() % 2 != 0)
@@ -103,11 +137,13 @@ std::list<Element *> PmergeMeList::recrusive_sort(std::list<Element *> l)
         if (first->nbr > second->nbr)
         {
             first->defeated.push_back(second);
+            second->partner = first;
             winners.push_back(first);
         }
         else
         {
             second->defeated.push_back(first);
+            first->partner = second;
             winners.push_back(second);
         }
         if (it == l.end())
@@ -115,24 +151,23 @@ std::list<Element *> PmergeMeList::recrusive_sort(std::list<Element *> l)
         std::advance(it, 2);
     }
     if (winners.size() > 1)
-        recrusive_sort(winners);
-
-    for (iter it = winners.begin() ; it != winners.end(); ++it)
+       winners = recrusive_sort(winners);
+    /*extract the losers from the winners pockets into the pend list*/  
+    for (iter it = winners.begin(); it != winners.end(); ++it)
     {
         if (!(*it)->defeated.empty())
         {
-            Element *p =  (*it)->defeated.back();
-            (*it)->defeated.pop_back(); 
-            pend.push_back(p);
+            Element *p = (*it)->defeated.back();
+            (*it)->defeated.pop_back();
+            pend_list.push_back(p);
         }
     }
-    Element *p = pend.front();
-    pend.pop_front();
-    winners.push_front(p);
+    jacobstal_binary_insertion(winners, pend_list);
     if (straggler != NULL)
     {
         iter it = std::lower_bound(winners.begin(), winners.end(), straggler, compare_elements); 
-        winners.insert(it, straggler);  
+        winners.insert(it, straggler);
     }
     return winners ;
+
 }

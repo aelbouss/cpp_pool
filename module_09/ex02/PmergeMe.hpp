@@ -5,6 +5,7 @@
 # include <queue>
 # include <list>
 # include <cstdlib>
+# include <iterator>
 # include <algorithm>
 
 
@@ -12,6 +13,7 @@
     {
         int nbr;
         std::list <Element*> defeated;
+        Element *partner;
     };
 
     typedef std::list<Element *>::iterator  iter;
