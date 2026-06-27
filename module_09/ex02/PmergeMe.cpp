@@ -76,30 +76,14 @@ void jacobstal_binary_insertion(std::list<Element*>& winners, std::list<Element*
 {
     if (pend_list.empty())
         return;
+    
+    /*group items  based  on the  jacobstl sequence */
+    long    n1 = 1;
+    long    n2 = 1;
 
-    Element *b1 = pend_list.front();
-    pend_list.pop_front();
-    winners.push_front(b1);
-
-    if (pend_list.empty())
-        return;
-    iter pend_it = pend_list.end();
-    --pend_it; 
-    while (true)
+    for (iter it = pend_list.begin() ; it != pend_list.end() ; ++it)
     {
-        Element* pending_loser = *pend_it;
-        Element* its_winner = pending_loser->partner;
-
-        iter partner_iter = std::find(winners.begin(), winners.end(), its_winner);
-
-        if (partner_iter == winners.end())
-            partner_iter = winners.end();
-        iter insert_slot = std::lower_bound(winners.begin(), partner_iter, pending_loser, compare_elements);
-        winners.insert(insert_slot, pending_loser);
-        if (pend_it == pend_list.begin())
-            break;
         
-        --pend_it;
     }
 }
 
