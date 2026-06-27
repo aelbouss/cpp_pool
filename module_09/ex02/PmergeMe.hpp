@@ -6,6 +6,7 @@
 # include <list>
 # include <cstdlib>
 # include <iterator>
+# include <vector>
 # include <algorithm>
 
 
