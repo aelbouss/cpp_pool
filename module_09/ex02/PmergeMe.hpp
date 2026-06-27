@@ -8,6 +8,8 @@
 # include <iterator>
 # include <vector>
 # include <algorithm>
+# include <ctime>
+# include <sys/time.h>
 
 
     struct  Element
