@@ -8,8 +8,7 @@
 # include <iterator>
 # include <vector>
 # include <algorithm>
-# include <ctime>
-# include <sys/time.h>
+# include <time.h>
 
 
     struct  Element
@@ -32,12 +31,26 @@
                 PmergeMeList(const PmergeMeList& src);
                 ~PmergeMeList();
 
-                void    Collect_sequence(int ac, char **av);
-                void    display_container(void);
                 std::list<Element *>    get_container();
                 std::list<Element *> recrusive_sort(std::list<Element *>);
     };
 
+    typedef std::vector<Element*>::iterator vec_iter;
+    class   PmergeMeVector
+    {
+        private:
+                std::vector <Element *> container;
+        public:
+                PmergeMeVector();
+                PmergeMeVector(int, char **av);
+                PmergeMeVector& operator << (const PmergeMeVector& src);
+                PmergeMeVector(const PmergeMeVector& src);
+                ~PmergeMeVector();
+
+                std::vector<Element *>  get_vect_container();
+                std::vector<Element *>  recrusive_sort(std::vector<Element *>);
+ 
+    };
 
 # define  RED "\e[0;31m"
 # define  RESET "\e[0m"

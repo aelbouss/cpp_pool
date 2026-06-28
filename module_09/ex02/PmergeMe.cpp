@@ -1,5 +1,6 @@
 # include "PmergeMe.hpp"
 
+/*=========================         List Implementation   Start      ==============================*/
 
 PmergeMeList::PmergeMeList() {}
 
@@ -11,22 +12,10 @@ PmergeMeList::PmergeMeList(int ac, char **av)
     {
         nbr = atoi(av[i]);
         if (nbr < 0)
-            throw std::runtime_error("Error : The Program Only Accept Positive Numbers");
+            throw std::runtime_error("Error");
         Element *unit = new Element();
         unit->nbr = nbr;
         container.push_back(unit);
-    }
-}
-
-void    PmergeMeList::display_container(void)
-{
-    std::list<Element*>::iterator it = container.begin();
-    while (it != container.end())
-    {
-        std::cout << (**it).nbr ;
-        if ((**it).defeated.size() == 0)
-            std::cout << "   => [] " << std::endl;
-        it++;
     }
 }
 
@@ -192,4 +181,147 @@ std::list<Element *> PmergeMeList::recrusive_sort(std::list<Element *> l)
     }
     return winners ;
 
+}
+
+/*=========================        List Implementation   End      ==============================*/
+
+
+/*=========================        Vector Implementation  Start    ==============================*/
+
+PmergeMeVector::PmergeMeVector(){}
+
+PmergeMeVector::PmergeMeVector(int ac, char **av)
+{
+    int nbr;
+
+    for (int i = 1 ; i < ac ; i++)
+    {
+        nbr = atoi(av[i]);
+        if (nbr < 0)
+            throw std::runtime_error("Error");
+        Element *unit = new Element();
+        unit->nbr = nbr;
+        container.push_back(unit);
+    }
+}
+
+PmergeMeVector& PmergeMeVector::operator << (const PmergeMeVector& src)
+{
+    if (this != &src)
+    {
+        for(size_t i = 0 ; i < container.size() ; i++)
+            delete(container[i]);
+        this->container = src.container;
+    }
+    return (*this);
+}
+
+PmergeMeVector::PmergeMeVector(const PmergeMeVector& src)
+{
+    (*this) = src;
+}
+
+PmergeMeVector::~PmergeMeVector()
+{
+      for(size_t i = 0 ; i < container.size() ; i++)
+            delete(container[i]);
+}
+
+std::vector<Element *>  PmergeMeVector::get_vect_container()
+{
+    return container ;
+}
+
+
+std::vector<size_t> generate_jacobstal_indexes_vector(std::vector<Element*>& pend_list)
+{
+    size_t size = pend_list.size();
+    std::vector<size_t>    jacobstal_idxes;
+    jacobstal_idxes.push_back(1);
+    jacobstal_idxes.push_back(3);
+    while (jacobstal_idxes.size() < size)
+    {
+        size_t  next = jacobstal_idxes[jacobstal_idxes.size() -1] + 2 * jacobstal_idxes[jacobstal_idxes.size() - 2] ;
+        jacobstal_idxes.push_back(next);
+    }
+    return jacobstal_idxes;
+}
+
+void jacobstal_binary_insertion_vector(std::vector<Element*>& winners, std::vector<Element*>& pend_vec)
+{
+    if (pend_vec.empty())
+        return;
+    winners.insert(winners.begin(), pend_vec[0]);
+
+    if (pend_vec.size() == 1)
+        return;
+    std::vector<size_t> jacob_seq = generate_jacobstal_indexes_vector(pend_vec);
+    size_t last_boundary = 0; 
+
+    for (size_t k = 1; k < jacob_seq.size(); ++k)
+    {
+        size_t upper_boundary = jacob_seq[k] - 1;
+        if (upper_boundary >= pend_vec.size())
+            upper_boundary = pend_vec.size() - 1;
+
+        for (long i = static_cast<long>(upper_boundary); i > static_cast<long>(last_boundary); --i)
+        {
+            Element* pending_loser = pend_vec[i];
+            Element* its_winner = pending_loser->partner;
+            vec_iter partner_iter = std::find(winners.begin(), winners.end(), its_winner);
+            vec_iter target_slot = std::lower_bound(winners.begin(), partner_iter, pending_loser, compare_elements);
+            winners.insert(target_slot, pending_loser);
+        }
+        last_boundary = upper_boundary;
+    }
+}
+
+std::vector<Element *>  PmergeMeVector::recrusive_sort(std::vector<Element *> l)
+{
+    std::vector<Element *>    winners;
+    Element                 *straggler = NULL;
+    std::vector<Element *>    pend_list;
+
+    if (l.size() % 2 != 0)
+    {
+        straggler = l.back();
+        l.pop_back();
+    }
+
+    for (size_t i = 0 ; i < l.size() ;)
+    {
+            if (l[i]->nbr > l[i + 1]->nbr)
+            {
+                    l[i]->defeated.push_back(l[i + 1]);
+                    winners.push_back(l[i]);
+                    l[i + 1]->partner = l[i];
+            }
+            else
+            {
+                l[i + 1]->defeated.push_back(l[i]);
+                winners.push_back(l[i + 1]);
+                l[i]->partner = l[i + 1];
+            }
+            if (i >= l.size())
+                break ;
+            i += 2 ;
+    }
+    if (winners.size() > 1)
+        winners = recrusive_sort(winners);
+    for (size_t i = 0 ; i < winners.size() ; i++)
+    {
+        if (!winners[i]->defeated.empty())
+        {
+            Element *p = winners[i]->defeated.back();
+            winners[i]->defeated.pop_back();
+            pend_list.push_back(p);
+        }
+    }
+    jacobstal_binary_insertion_vector(winners, pend_list);
+    if (straggler != NULL)
+    {
+        std::vector<Element *>::iterator it = std::lower_bound(winners.begin(), winners.end(), straggler, compare_elements); 
+        winners.insert(it, straggler);
+    }
+    return winners ;
 }
