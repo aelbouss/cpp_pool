@@ -6,7 +6,7 @@ int	main(int ac, char **av)
     
 	if (ac != 2)
 	{
-		std::cerr << RED << "Invalid Arguments Number"<< RESET << std::endl; return (1);
+		std::cerr << RED << "could not open file"<< RESET << std::endl; return (1);
 	}
     try
     {

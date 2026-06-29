@@ -3,10 +3,9 @@
 int     main(int ac, char **av)
 {   
 
-
         if (ac < 2)
         {
-            std::cerr << "Error : provide the sequence of numbers" << std::endl;
+            std::cerr << "invalid arguments" << std::endl;
             return (1);
         }
 

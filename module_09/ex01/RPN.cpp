@@ -35,7 +35,6 @@ int    RPN::get_top()
     return (container.top());
 }
 
-
  void    process_input(char *str)
  {
     std::string input(str);
@@ -56,12 +55,29 @@ int    RPN::get_top()
         {
             obj.push_value(input[i] - '0');
         }
-        else if ((input[i] != ' ') && (obj.get_container_size() == 2))
-        {
-            nb2 = obj.get_top();
-            obj.pop_value();
-            nb1 = obj.get_top();
-            obj.pop_value();
+        else if ((input[i] != ' '))
+        {   
+            if (obj.get_container_size() != 0)
+            {
+                nb2 = obj.get_top();
+                obj.pop_value();
+            }
+            else
+            {
+                std::cerr << "Error" << std::endl;
+                return ;
+            }
+            if (obj.get_container_size() != 0)
+            {
+                nb1 = obj.get_top();
+                obj.pop_value();
+            }
+            else
+            {
+                std::cerr << "Error" << std::endl;
+                return ;
+            }
+          
             if (input[i] == '-')
             {
                 res = nb1 - nb2;
