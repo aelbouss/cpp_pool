@@ -232,20 +232,12 @@ void	BitcoinExchange::parse_db_file(void)
 		db_container.insert(std::make_pair(date, value));
 	}
     infile.close();
-
-    /*   the print statement */
-    /* td::map<std::string, float>::iterator it = db_container.begin();
-   while (it != db_container.end())
-    {
-        std::cout << GREEN << "the date : "<< it->first << RED << " value : " << it->second << std::endl;
-        it++;
-    }*/
 }
 
 
 /**
 * @brief parse the input file content
-* @param the file should be parsed
+* @param the file that should be parsed
 * @return nothing
 */
 
@@ -275,9 +267,7 @@ void    BitcoinExchange::parse_input(std::string file)
         remove_end_spaces(date);
         if (date == "date")
             continue ;
-        if (!check_input_valid_chars(date))
-            throw std::runtime_error("Error : Bad Input File Entries");
-        if (!parse_date(date))
+        if (!check_input_valid_chars(date) || !parse_date(date) || (date.length() != 10 ))
         {  
             std::cerr << "bad input => " << date << std::endl;
             continue;
@@ -293,7 +283,7 @@ void    BitcoinExchange::parse_input(std::string file)
         } 
         it = db_container.find(date);
         if (it != db_container.end())
-        { 
+        {
             exchange_rate = it->second;
         }
         else
